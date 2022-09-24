@@ -1,6 +1,16 @@
 [
   {
-    "name" : "jeevaprakash",
-    "gender": "male"
+    "firstName" : "Jeevaprakash",
+    "Password": "C1ph3R",
+    "lastName" : "G",
+    "gender": "male",
+    "age": 20,
+    "fareType": "",
+    "physicallyAble" : false,
+    "tripType": "oneway",
+    "isFlightBooked": true,
+    "detailsOfTheFlight": {
+
+    }
   }
 ]

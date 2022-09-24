@@ -1,0 +1,33 @@
+[
+  {
+    "flightName": "cipher",
+    "noOfSeats": 200,
+    "tripDate": "12-03-22",
+    "departureLocation": "Mumbai",
+    "totalDuration": "2hrs",
+    "timeOfDeparture": "10:30 a.m.",
+    "arrivalLocation": "Chennai",
+    "timeOfArrival": "12:30 p.m.",
+    "checkInFlight": 12,
+    "inFirstClass": {
+      "meals": "Cold Snacks",
+      "price": 8000,
+      "checkInExtra": 30,
+      "noOfSeatsAvailableInFirstClass": 10
+    },
+    "inSecondClass": {
+      "meals": "none",
+      "price": 6000,
+      "checkInExtra": 20,
+      "noOfSeatsAvailableInFirstClass": 30
+    },
+    "inBusinessClass": {
+      "meals": "Cold Drinks/Hot Drinks and Vegetarian Sandwich",
+      "price": 8000,
+      "checkInExtra": 30,
+      "noOfSeatsAvailableInFirstClass": 10
+    }
+
+
+  }
+]
