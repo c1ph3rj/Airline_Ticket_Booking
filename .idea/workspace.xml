@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="70877913-578c-496a-ba7b-4193a9fb8fa2" name="Changes" comment="AirLines">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Airline_Ticket_Booking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Airline_Ticket_Booking.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFromUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFromUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/flightDataBase.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/flightDataBase.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userDataBase.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/userDataBase.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +81,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663999863298</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="AirLines">
+      <created>1664177727266</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1664177727266</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -62,36 +62,6 @@
   {
     "flightName": "cipher",
     "noOfSeats": 200,
-    "departureLocation": "Chennai",
-    "totalDuration": "2hrs",
-    "time": {
-      "departure": ["12 PM", "6 PM"],
-      "arrival": ["2 PM", "8 PM"]
-    },
-    "arrivalLocation": "Bengaluru",
-    "checkInFlight": 12,
-    "inFirstClass": {
-      "meals": "Cold Snacks",
-      "price": 5000,
-      "checkInExtra": 30,
-      "noOfSeatsAvailableInFirstClass": 10
-    },
-    "inSecondClass": {
-      "meals": "none",
-      "price": 3500,
-      "checkInExtra": 20,
-      "noOfSeatsAvailableInSecondClass": 30
-    },
-    "inBusinessClass": {
-      "meals": "Cold Drinks/Hot Drinks and Veg/Non-Veg Sandwich",
-      "price": 11000,
-      "checkInExtra": 30,
-      "noOfSeatsAvailableInBusinessClass": 10
-    }
-  },
-  {
-    "flightName": "cipher",
-    "noOfSeats": 200,
     "departureLocation": "Bengaluru",
     "totalDuration": "2hrs",
     "time": {
@@ -119,70 +89,12 @@
       "noOfSeatsAvailableInBusinessClass": 10
     }
   },
+
+
   {
     "flightName": "cipher",
     "noOfSeats": 200,
-    "departureLocation": "Bengaluru",
-    "totalDuration": "3hrs",
-    "time": {
-      "departure": ["9 AM", "3 PM"],
-      "arrival": ["12 PM", "6 PM"]
-    },
-    "arrivalLocation": "Mumbai",
-    "checkInFlight": 12,
-    "inFirstClass": {
-      "meals": "Cold Snacks",
-      "price": 9000,
-      "checkInExtra": 30,
-      "noOfSeatsAvailableInFirstClass": 10
-    },
-    "inSecondClass": {
-      "meals": "none",
-      "price": 7000,
-      "checkInExtra": 20,
-      "noOfSeatsAvailableInSecondClass": 30
-    },
-    "inBusinessClass": {
-      "meals": "Cold Drinks/Hot Drinks and Veg/Non-Veg Sandwich",
-      "price": 16000,
-      "checkInExtra": 30,
-      "noOfSeatsAvailableInBusinessClass": 10
-    }
-  },
-  {
-    "flightName": "cipher",
-    "noOfSeats": 200,
-    "departureLocation": "Mumbai",
-    "totalDuration": "3hrs",
-    "time": {
-      "departure": ["1 PM", "7 PM"],
-      "arrival": ["4 PM", "10 PM"]
-    },
-    "arrivalLocation": "Bengaluru",
-    "checkInFlight": 12,
-    "inFirstClass": {
-      "meals": "Cold Snacks",
-      "price": 5000,
-      "checkInExtra": 30,
-      "noOfSeatsAvailableInFirstClass": 10
-    },
-    "inSecondClass": {
-      "meals": "none",
-      "price": 3500,
-      "checkInExtra": 20,
-      "noOfSeatsAvailableInSecondClass": 30
-    },
-    "inBusinessClass": {
-      "meals": "Cold Drinks/Hot Drinks and Veg/Non-Veg Sandwich",
-      "price": 11000,
-      "checkInExtra": 30,
-      "noOfSeatsAvailableInBusinessClass": 10
-    }
-  },
-  {
-    "flightName": "cipher",
-    "noOfSeats": 200,
-    "departureLocation": "Mumbai",
+    "departureLocation": "Delhi",
     "totalDuration": "2hrs",
     "time": {
       "departure": ["1 PM", "6 PM"],
@@ -212,13 +124,13 @@
   {
     "flightName": "cipher",
     "noOfSeats": 200,
-    "departureLocation": "Hyderabad",
+    "departureLocation": "Andhra pradesh",
     "totalDuration": "2hrs",
     "time": {
       "departure": ["3:30 PM", "9 PM"],
       "arrival": ["5:30 PM", "11 PM"]
     },
-    "arrivalLocation": "Mumbai",
+    "arrivalLocation": "Delhi",
     "checkInFlight": 12,
     "inFirstClass": {
       "meals": "Cold Snacks",
@@ -242,7 +154,7 @@
   {
     "flightName": "cipher",
     "noOfSeats": 200,
-    "departureLocation": "Chennai",
+    "departureLocation": "kerala",
     "totalDuration": "2hrs",
     "time": {
       "departure": ["2 PM", "8 PM"],
@@ -272,13 +184,13 @@
   {
     "flightName": "cipher",
     "noOfSeats": 200,
-    "departureLocation": "Hyderabad",
+    "departureLocation": "goa",
     "totalDuration": "2hrs",
     "time": {
       "departure": ["11 AM", "6 PM"],
       "arrival": ["1 PM", "8 PM"]
     },
-    "arrivalLocation": "Chennai",
+    "arrivalLocation": "kerala",
     "checkInFlight": 12,
     "inFirstClass": {
       "meals": "Cold Snacks",

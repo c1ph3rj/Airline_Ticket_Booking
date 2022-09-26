@@ -14,7 +14,7 @@ public class DataFromUser {
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
     private Date today = new Date();
-    private String time, flight, flightClass, departureDate, returnDate, response, arrival, departure, tripType;
+    private String returnTime, time, flight, flightClass, departureDate, returnDate, response, arrival, departure, tripType, dateForFlight;
     private String userName;
     private final List < UserDetails > userDB = new ArrayList < > ();
     private JSONArray userData;
@@ -74,10 +74,34 @@ public class DataFromUser {
         }
     }
 
+    void setReturnTime(){
+        clearScreen();
+        System.out.println("Departure From: " + departure + "\t\tArrival to:" + arrival);
+        System.out.println(dateForFlight);
+        System.out.println("selected flight number: " + flight);
+        JSONArray departureTime = (JSONArray) flightDB.get(Integer.parseInt(flight) - 1).time.get("departure");
+        JSONArray arrivalTime = (JSONArray) flightDB.get(Integer.parseInt(flight) - 1).time.get("arrival");
+        for (int i = 0; i < departureTime.size(); i++)
+            System.out.println((i + 1) + ". Departure time : " + departureTime.get(i) + " Arrival time: " + arrivalTime.get(i));
+        do {
+            returnTime = scanner.next();
+            try {
+                if ((Integer.parseInt(returnTime)) <= departureTime.size() && Integer.parseInt(returnTime) != 0) {
+                    System.out.println((returnTime) + ". Departure time : " + departureTime.get(Integer.parseInt(returnTime) - 1) + "\tArrival time: " + arrivalTime.get(Integer.parseInt(returnTime) - 1));
+                    response = "Time Occurred";
+                    userVerification();
+                    break;
+                } else response = "invalid Input! try again.";
+            } catch (Exception e) {
+                response = e.toString();
+            }
+            System.out.println(response);
+        } while (response.equals("invalid Input! try again."));
+
+    }
         void setTime() {
             clearScreen();
             System.out.println("Departure From: " + departure + "\t\tArrival to:" + arrival);
-            String dateForFlight = (tripType.equals("RoundTrip")) ? "Departure Date: " + departureDate + " " + "Return Date: " + returnDate : "Departure Date: " + departureDate;
             System.out.println(dateForFlight);
             System.out.println("selected flight number: " + flight);
             JSONArray departureTime = (JSONArray) flightDB.get(Integer.parseInt(flight) - 1).time.get("departure");
@@ -90,8 +114,9 @@ public class DataFromUser {
                     if ((Integer.parseInt(time)) <= departureTime.size() && Integer.parseInt(time) != 0) {
                         System.out.println((time) + ". Departure time : " + departureTime.get(Integer.parseInt(time) - 1) + "\tArrival time: " + arrivalTime.get(Integer.parseInt(time) - 1));
                         response = "Time Occurred";
-                        userVerification();
-                        break;
+                        if(tripType.equals("RoundTrip"))
+                            setReturnTime();
+                        else userVerification();
                     } else response = "invalid Input! try again.";
                 } catch (Exception e) {
                     response = e.toString();
@@ -99,10 +124,55 @@ public class DataFromUser {
                 System.out.println(response);
             } while (response.equals("invalid Input! try again."));
         }
+
+    private void selectFlight() {
+        clearScreen();
+        System.out.println("Departure From: " + departure + "\t\tArrival to:" + arrival);
+        System.out.println(dateForFlight);
+        System.out.println("Flight Class: " + flightClass);
+        System.out.println("Here is the list of flight available:\n");
+        boolean flightFound = false;
+        for (int i = 0; i < flightDB.size(); i++) {
+            if (departure.equals(flightDB.get(i).departureLocation) && arrival.equals(flightDB.get(i).arrivalLocation)) {
+                System.out.println("____________________________________________");
+                System.out.println("Select " + (i + 1) + " for the flight below:");
+                System.out.println("Name of the airlines:" + flightDB.get(i).flightName);
+                System.out.println("Total duration: " + flightDB.get(i).totalDuration);
+                System.out.println("Check in(Cabin):" + flightDB.get(i).checkInCabin + " Kg MAX.");
+                flight = String.valueOf(flightDB.indexOf(flightDB.get(i))-1);
+                if ((flightClass.equals("Business")))
+                    businessClass(i);
+                else if ((flightClass.equals("First")))
+                    firstClass(i);
+                else
+                    secondClass(i);
+                flightFound = true;
+            }
+        }
+        if(!flightFound) {
+            System.out.println("no Flights found sorry!");
+            setSelectDeparture();
+        }
+        do {
+            String flight1 = scanner.next();
+            try {
+                response = (Integer.parseInt(flight1) <= flightDB.size() && Integer.parseInt(flight1) > 0&&(flight1.equals(flight))) ? "flight selected." : "Invalid Input try again.";
+                if (response.equals("flight selected.")) {
+                    System.out.println("Selected flight no: " + flight1);
+                    setTime();
+                    break;
+                } else
+                    System.out.println(response);
+            } catch (Exception e) {
+                response = "Invalid Input try again.";
+                System.out.println(response);
+            }
+        } while (response.equals("Invalid Input try again."));
+    }
         void setFlightCLass() {
             clearScreen();
             System.out.println("Departure From: " + departure + "\t\tArrival to:" + arrival);
-            String dateForFlight = (tripType.equals("RoundTrip")) ? "Departure Date: " + departureDate + " " + "Return Date: " + returnDate : "Departure Date: " + departureDate;
+            dateForFlight = (tripType.equals("RoundTrip")) ? "Departure Date: " + departureDate + " " + "Return Date: " + returnDate : "Departure Date: " + departureDate;
             System.out.println(dateForFlight);
             System.out.println("Select Class:\n1. Business\n2. First\n3. Second");
             do {
@@ -115,6 +185,7 @@ public class DataFromUser {
                     System.out.println(response);
             } while (response.equals("Invalid Input try again."));
         }
+
         private void firstClass(int i) {
             System.out.println("\n--------------- In First Class ---------------");
             System.out.println("Meals in First Class: " + flightDB.get(i).inFirstClass.get("meals"));
@@ -135,44 +206,6 @@ public class DataFromUser {
             System.out.println("Check In(Extra): " + flightDB.get(i).inSecondClass.get("checkInExtra") + "Kg MAX.");
             System.out.println("Price for Single person: " + flightDB.get(i).inSecondClass.get("price"));
             System.out.println("No of seats available: " + flightDB.get(i).inSecondClass.get("noOfSeatsAvailableInSecondClass"));
-        }
-        private void selectFlight() {
-            clearScreen();
-            System.out.println("Departure From: " + departure + "\t\tArrival to:" + arrival);
-            String dateForFlight = (tripType.equals("RoundTrip")) ? "Departure Date: " + departureDate + " " + "Return Date: " + returnDate : "Departure Date: " + departureDate;
-            System.out.println(dateForFlight);
-            System.out.println("Flight Class: " + flightClass);
-            System.out.println("Here is the list of flight available:\n");
-            for (int i = 0; i < flightDB.size(); i++) {
-                if (departure.equals(flightDB.get(i).departureLocation) && arrival.equals(flightDB.get(i).arrivalLocation)) {
-                    System.out.println("____________________________________________");
-                    System.out.println("Select " + (i + 1) + " for the flight below:");
-                    System.out.println("Name of the airlines:" + flightDB.get(i).flightName);
-                    System.out.println("Total duration: " + flightDB.get(i).totalDuration);
-                    System.out.println("Check in(Cabin):" + flightDB.get(i).checkInCabin + " Kg MAX.");
-                    if ((flightClass.equals("Business")))
-                        businessClass(i);
-                    else if ((flightClass.equals("First")))
-                        firstClass(i);
-                    else
-                        secondClass(i);
-                }
-            }
-            do {
-                flight = scanner.next();
-                try {
-                    response = (Integer.parseInt(flight) <= flightDB.size() && Integer.parseInt(flight) > 0) ? "flight selected." : "Invalid Input try again.";
-                    if (response.equals("flight selected.")) {
-                        System.out.println("Selected flight no: " + flight);
-                        setTime();
-                        break;
-                    } else
-                        System.out.println(response);
-                } catch (Exception e) {
-                    response = "Invalid Input try again.";
-                    System.out.println(response);
-                }
-            } while (response.equals("Invalid Input try again."));
         }
 
         void setDate() throws java.text.ParseException {
