@@ -7,7 +7,7 @@
     "age": 20,
     "fareType": "",
     "physicallyAble" : false,
-    "tripType": "oneway",
+    "tripType": "OneWay",
     "isFlightBooked": true,
     "detailsOfTheFlight": {
 

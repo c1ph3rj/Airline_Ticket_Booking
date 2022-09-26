@@ -2,10 +2,12 @@
   {
     "flightName": "cipher",
     "noOfSeats": 200,
-    "tripDate": "12-03-22",
     "departureLocation": "Mumbai",
     "totalDuration": "2hrs",
-    "timeOfDeparture": "10:30 a.m.",
+    "time": {
+      "departure": ["10 AM", "5 PM"],
+      "arrival": ["12 PM", "7 PM"]
+    },
     "arrivalLocation": "Chennai",
     "timeOfArrival": "12:30 p.m.",
     "checkInFlight": 12,
@@ -27,7 +29,5 @@
       "checkInExtra": 30,
       "noOfSeatsAvailableInFirstClass": 10
     }
-
-
   }
 ]

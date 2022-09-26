@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70877913-578c-496a-ba7b-4193a9fb8fa2" name="Changes" comment="AirLines">
-      <change afterPath="$PROJECT_DIR$/src/FlightDataBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/flightDataBase.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFromUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Airline_Ticket_Booking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Airline_Ticket_Booking.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FlightDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FlightDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/flightDataBase.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/flightDataBase.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/userDataBase.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/userDataBase.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,12 +50,28 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/Downloads/json-simple-1.1.1.jar",
+    "last.edited.regexp": "10/03/2022",
+    "last_opened_file_path": "C:/Users/JEEVA/Downloads/RailwayE-Reservation-master/RailwayE-Reservation-master",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Airline_Ticket_Booking" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -98,5 +114,9 @@
     <MESSAGE value="ggg" />
     <MESSAGE value="AirLines" />
     <option name="LAST_COMMIT_MESSAGE" value="AirLines" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
