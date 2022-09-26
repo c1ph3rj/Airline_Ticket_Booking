@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70877913-578c-496a-ba7b-4193a9fb8fa2" name="Changes" comment="AirLines">
+      <change afterPath="$PROJECT_DIR$/src/InputData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OutputData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFromUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFromUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UserDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/userDataBase.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/userDataBase.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664187501491</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="AirLines">
+      <created>1664191551707</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1664191551707</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -3,6 +3,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -15,8 +16,9 @@ public class DataFromUser {
 
     private Date today = new Date();
     private String returnTime, time, flight, flightClass, departureDate, returnDate, response, arrival, departure, tripType, dateForFlight;
-    private final List < UserDetails > userDB = new ArrayList < > ();
-    private JSONArray userData;
+    private final List < InputData > userDBInput = new ArrayList < > ();
+    private final List < OutputData > userDBOutput = new ArrayList < > ();
+    private JSONArray outputData;
     private JSONArray DB;
     private final List < FlightDataBase > flightDB = new ArrayList < > ();
     private final Scanner scanner = new Scanner(System.in);
@@ -36,13 +38,13 @@ public class DataFromUser {
     }
     void userDataBase() throws IOException, ParseException {
         Object obj = new JSONParser().parse(new FileReader("src/userDataBase.json"));
-        userData = (JSONArray) obj;
-        for (Object item: userData) {
-            userDB.add(new UserDetails((String)((JSONObject) item).get("firstName"), (String)((JSONObject) item).get("lastName"), (String)((JSONObject) item).get("Password"), ((Long)((JSONObject) item).get("age")).intValue(), (String)((JSONObject) item).get("gender"), (Boolean)((JSONObject) item).get("physicallyChallenged")));
+        outputData = (JSONArray) obj;
+        for (Object item: outputData) {
+            userDBOutput.add(new OutputData((String)((JSONObject) item).get("userName"), (String)((JSONObject) item).get("eMail"), (String)((JSONObject) item).get("mobileNumber"), ((Long)((JSONObject) item).get("age")).intValue(), (String)((JSONObject) item).get("gender")));
         }
     }
 
-    private void userDetailsAsInput() {
+    private void userDetailsAsInput() throws IOException {
         System.out.println("__________ Enter the below details to book the flight __________");
         System.out.println("Enter your UserName:");
         String userName = scanner.next();
@@ -51,8 +53,7 @@ public class DataFromUser {
         String result;
         Pattern emailPattern = Pattern.compile("^[a-zA-Z]+[\\.0-9a-zA-Z]+[@][a-zA-Z0-9]+\\.[a-z]{2,}$");
         do {
-            System.out.println("Enter a E-Mail Id :");
-            mailId = scanner.nextLine();
+            mailId = scanner.next();
             Matcher matcher = emailPattern.matcher(mailId);
             result = (mailId.isEmpty()) ? "please enter a value to verify!" : (matcher.matches()) ? (mailId + " is a valid mail id.\n") : (mailId + " is a invalid mail id! try again.\n");
         }
@@ -61,15 +62,14 @@ public class DataFromUser {
         String mobileNumber;
         Pattern mobileNoPattern = Pattern.compile( "^[^0-5][0-9]{9}$");
         do {
-            System.out.println("Enter a Mobile number :");
-            mobileNumber = scanner.nextLine();
+            mobileNumber = scanner.next();
             Matcher matcher = mobileNoPattern.matcher(mobileNumber);
             result = (mobileNumber.isEmpty()) ? "please enter a value to verify!" : (matcher.matches()) ? (mobileNumber + " is a valid mobile number.\n") : (mobileNumber + " is a invalid mobile number! try again.\n");
-            System.out.println(result);
         } while (result.contains("invalid") || result.contains("value"));
         System.out.println("Enter your age:");
+        String age;
         do{
-            String age = scanner.next();
+            age = scanner.next();
             try{
                 result = (Integer.parseInt(age)<=70&&Integer.parseInt(age)>=1)?"Age is valid":"Age is invalid. Try again.";
             }catch(Exception e){
@@ -77,10 +77,17 @@ public class DataFromUser {
             }
         }while (result.equals("Age is invalid. Try again."));
         System.out.println("Enter gender:\n1 for male\n2 for female\n3 for others");
+        String gender;
         do{
-            String gender = scanner.next();
-            result = (gender.equals("1")||gender.equals("2")||gender.equals("3"))?"Gender is valid.":"Invalid Gender.";
-        }while(result.contains("Invalid"));
+            gender = scanner.next();
+            gender = (gender.equals("1"))?"Male":(gender.equals("2"))?"FemLale":(gender.equals("3"))?"Others":"Invalid Gender.";
+        }while(gender.contains("Invalid"));
+        userDBOutput.add(new OutputData(userName,mailId,mobileNumber,Integer.parseInt(age),gender));
+        System.out.println("Success");
+        FileWriter fileWriter = new FileWriter("src/userDataBase.json");
+        fileWriter.write(outputData.toJSONString());
+        fileWriter.close();
+        System.exit(0);
 
     }
     void setReturnTime() {
@@ -147,7 +154,7 @@ public class DataFromUser {
                 System.out.println("Name of the airlines:" + flightDB.get(i).flightName);
                 System.out.println("Total duration: " + flightDB.get(i).totalDuration);
                 System.out.println("Check in(Cabin):" + flightDB.get(i).checkInCabin + " Kg MAX.");
-                flight = String.valueOf(flightDB.indexOf(flightDB.get(i)) - 1);
+                flight = String.valueOf(flightDB.indexOf(flightDB.get(i)) + 1);
                 if ((flightClass.equals("Business")))
                     businessClass(i);
                 else if ((flightClass.equals("First")))
@@ -172,7 +179,6 @@ public class DataFromUser {
                 } else
                     System.out.println(response);
             } catch (Exception e) {
-                response = "Invalid Input try again.";
                 System.out.println(response);
             }
         } while (response.equals("Invalid Input try again."));
