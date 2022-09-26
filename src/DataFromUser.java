@@ -21,14 +21,11 @@ public class DataFromUser {
     private String returnDate;
     private String response;
     private String arrival;
-    private final Scanner scanner = new Scanner(System.in);
-
     private String departure;
     private String tripType;
-
-
-    private final List<FlightDataBase> flightDB = new ArrayList<>();
     private JSONArray DB;
+    private final List<FlightDataBase> flightDB = new ArrayList<>();
+    private final Scanner scanner = new Scanner(System.in);
 
     void clearScreen(){
         System.out.print("\033[H\033[2J");
