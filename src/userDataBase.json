@@ -5,12 +5,89 @@
     "lastName" : "G",
     "gender": "male",
     "age": 20,
-    "fareType": "",
-    "physicallyAble" : false,
-    "tripType": "OneWay",
-    "isFlightBooked": true,
-    "detailsOfTheFlight": {
-
-    }
+    "physicallyChallenged" : false,
+    "detailsOfTheBooking": null
+  },
+  {
+    "firstName" : "Rajasekar",
+    "password" : "liveto@1eat2ride",
+    "lastName" : "M",
+    "gender": "male",
+    "age": 24,
+    "physicallyChallenged" : false,
+    "detailsOfTheBooking": null
+  },
+  {
+    "firstName" : "Sethu",
+    "password" : "createyourownpath@1",
+    "lastName" : "K",
+    "gender": "male",
+    "age": 22,
+    "physicallyChallenged" : false,
+    "detailsOfTheBooking": null
+  },
+  {
+    "firstName" : "Vishnu",
+    "password" : "OmNamashivay@1",
+    "lastName" : "K",
+    "gender": "male",
+    "age": 28,
+    "physicallyChallenged" : false,
+    "detailsOfTheBooking": null
+  },
+  {
+    "firstName" : "Eashwar",
+    "password" : "krishnamvandejagathguru@2",
+    "lastName" : "P",
+    "gender": "male",
+    "age": 32,
+    "physicallyChallenged" : false,
+    "detailsOfTheBooking": null
+  },
+  {
+    "firstName" : "DharmaRaj",
+    "password" : "suryadevanamah@2",
+    "lastName" : "S",
+    "gender": "male",
+    "age": 31,
+    "physicallyChallenged" : false,
+    "detailsOfTheBooking": null
+  },
+  {
+    "firstName" : "Charlie",
+    "password" : "livewithhappiness@2",
+    "lastName" : "D",
+    "gender": "male",
+    "age": 26,
+    "physicallyChallenged" : false,
+    "detailsOfTheBooking": null
+  },
+  {
+    "firstName" : "Godse",
+    "password" : "ere324@2",
+    "lastName" : "S",
+    "gender": "male",
+    "age": 32,
+    "physicallyChallenged" : true,
+    "detailsOfTheBooking": null
+  },
+  {
+    "firstName" : "Charan",
+    "password" : "rnjAXok@2",
+    "lastName" : "S",
+    "gender": "male",
+    "age": 24,
+    "physicallyChallenged" : false,
+    "detailsOfTheBooking": null
+  },
+  {
+    "firstName" : "Jesus",
+    "password" : "amen_isaytoyou",
+    "lastName" : "S",
+    "gender": "male",
+    "age": 24,
+    "physicallyChallenged" : false,
+    "detailsOfTheBooking": null
   }
+  
 ]

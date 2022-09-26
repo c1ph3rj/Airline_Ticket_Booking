@@ -12,9 +12,11 @@ public class UserInterface extends DataFromUser {
         clearScreen();
         System.out.println("Welcome to C1ph3R Airlines");
         setSelectTripType();
+        setTime();
 
     }
     UserInterface() throws IOException, ParseException {
+        userDataBase();
         flightDataBase();
         firstPageOfTheAirLines();
     }

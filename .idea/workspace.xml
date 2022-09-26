@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70877913-578c-496a-ba7b-4193a9fb8fa2" name="Changes" comment="AirLines">
-      <change afterPath="$PROJECT_DIR$/src/DataFromUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Airline_Ticket_Booking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Airline_Ticket_Booking.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FlightDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FlightDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFromUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFromUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/flightDataBase.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/flightDataBase.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/userDataBase.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/userDataBase.json" afterDir="false" />
@@ -30,6 +30,7 @@
       </GitPushTagMode>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/UserInterface.java" root0="SKIP_INSPECTION" />
@@ -50,27 +51,16 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last.edited.regexp": "10/03/2022",
-    "last_opened_file_path": "C:/Users/JEEVA/Downloads/RailwayE-Reservation-master/RailwayE-Reservation-master",
+    "last_opened_file_path": "C:/Users/Temp-user3/IdeaProjects/Airline_Ticket_Booking/src",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Airline_Ticket_Booking" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Temp-user3\IdeaProjects\Airline_Ticket_Booking\src" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -114,9 +104,5 @@
     <MESSAGE value="ggg" />
     <MESSAGE value="AirLines" />
     <option name="LAST_COMMIT_MESSAGE" value="AirLines" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>
