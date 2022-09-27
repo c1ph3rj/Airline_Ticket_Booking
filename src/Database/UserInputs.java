@@ -3,14 +3,12 @@ package Database;
 //Importing Libraries of JSON.
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
 //Importring predefined Java Libraries.
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,16 +18,24 @@ public class UserInputs extends DataBaseOperations {
     private final Pattern datePattern = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])[- /](0[1-9]|1[012])[- /](19|20)\\d\\d$");
     private final Scanner scanner = new Scanner(System.in);
     private Long bookingId;
+    private String userName, mailId, mobileNumber,gender;
+    private int age;
+    private boolean isLoggedIn = false;
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     private final Date today = new Date();
     private String returnTime = "", time, flight, flightClass, departureDate, returnDate, response, arrival, departure, tripType, dateForFlight;
     private final JSONObject flightObj = new JSONObject();
     private int flightNo;
     //Constructor to get the userDatabase and flightDatabase.
-    public UserInputs() throws IOException, ParseException {
-        userDataBase();
-        flightDataBase();
+    public UserInputs(String userName, String mailId, String mobileNumber, int age, String gender, boolean isLoggedIn){
+        this.isLoggedIn = isLoggedIn;
+        this.userName = userName;
+        this.age =age;
+        this.gender = gender;
+        this.mobileNumber = mobileNumber;
+        this.mailId = mailId;
     }
+    public UserInputs(){}
     //Method to clear the screen.
     public void clearScreen() {
         System.out.print("\n");
@@ -53,7 +59,7 @@ public class UserInputs extends DataBaseOperations {
             flightObj.put("detailsOfFlightClass", flightDB.get(flightNo).inBusinessClass);
     }
     //Method to confirm Booking.
-    void confirmBooking(String userName,String mailId,String mobileNumber,int age,String gender) throws IOException {
+    void confirmBooking() throws IOException {
         System.out.println("Press >> 1 to confirm. ");
         System.out.println("Press >> 2 to cancel. ");
         System.out.println("Press >> 3 to Re enter data. ");
@@ -77,7 +83,7 @@ public class UserInputs extends DataBaseOperations {
        }while(response.equals("Invalid"));
     }
     //Method to print the details of the user What we get.
-    void printUserInputs(String userName,String mailId,String mobileNumber,int age,String gender) throws IOException {
+    void printUserInputs() throws IOException {
         clearScreen();
         bookingId = new Random().nextLong();
         bookingId = (bookingId<0)?(bookingId*-1):bookingId;
@@ -117,16 +123,15 @@ public class UserInputs extends DataBaseOperations {
             System.out.println("Price for the flight: RS." + flightDB.get(flightNo).inSecondClass.get("price") +"\n" );
             System.out.println("_____________________________________");
         }
-        confirmBooking(userName, mailId, mobileNumber, age, gender);
+        confirmBooking();
     }
     //Method to get UserDetails and Store in a DB.
-    void userDetailsAsInput() throws IOException {
+    void registerNewAccount() throws IOException {
         System.out.println("__________ Enter the below details to book the flight __________");
         System.out.println("Enter your UserName:");
         //For UserName.
-        String userName = scanner.next();
+        userName = scanner.next();
         System.out.println("Enter your E-Mail id:");
-        String mailId;
         String result;
         //To verify email Pattern.
         Pattern emailPattern = Pattern.compile("^[a-zA-Z]+[\\.0-9a-zA-Z]+[@][a-zA-Z0-9]+\\.[a-z]{2,}$");
@@ -141,7 +146,6 @@ public class UserInputs extends DataBaseOperations {
         while (result.contains("invalid") || result.contains("value"));
         System.out.println("Enter your Mobile Number: ");
         //To verify Phone no.
-        String mobileNumber;
         Pattern mobileNoPattern = Pattern.compile("^[^0-5][0-9]{9}$");
         do {
             mobileNumber = scanner.next();
@@ -154,9 +158,8 @@ public class UserInputs extends DataBaseOperations {
         System.out.println("Enter your age:\n" +
                 "(age must be 1 to 80)");
         //To get Age.
-        String age;
         do {
-            age = scanner.next();
+            String age = scanner.next();
             try {
                 result = (Integer.parseInt(age) <= 80 && Integer.parseInt(age) >= 1) ? "Age is valid" : "Age is invalid. Try again.";
             } catch (Exception e) {
@@ -164,11 +167,12 @@ public class UserInputs extends DataBaseOperations {
             }
             if (result.contains("invalid."))
                 System.out.println(result);
+            else
+                this.age = Integer.parseInt(age);
         }//Executes until the user enters a correct age.
         while (result.equals("Age is invalid. Try again."));
         System.out.println("Enter gender:\n1 for male\n2 for female\n3 for others");
         //To verify the gender.
-        String gender;
         do {
             gender = scanner.next();
             gender = (gender.equals("1")) ? "Male" : (gender.equals("2")) ? "FemLale" : (gender.equals("3")) ? "Others" : "Invalid Gender.";
@@ -176,7 +180,36 @@ public class UserInputs extends DataBaseOperations {
                 System.out.println(gender);
         } //Loops executes until the user enters a valid input.
         while (gender.contains("Invalid"));
-        printUserInputs(userName, mailId, mobileNumber, Integer.parseInt(age), gender);
+        printUserInputs();
+    }
+    void userDetailsAsInput() throws IOException {
+        System.out.println(isLoggedIn);
+        if(!isLoggedIn){
+            System.out.println("hiii");
+            registerNewAccount();
+        }else{
+            System.out.println("Hi " + userName);
+            System.out.println("Your account has already logged in,\nDo you need to continue with your details\nor Login with other Id?");
+            System.out.println("press 1 to Continue\npress 2 to Logout and register New account.");
+            do {
+                String userSelection = scanner.next();
+                try {
+                    if(userSelection.equals("1")){
+                        response ="continue";
+                        printUserInputs();
+                    }else if(userSelection.equals("2")){
+                        response ="continue";
+                        registerNewAccount();
+                    }else
+                        response = "Invalid";
+                } catch (Exception e) {
+                    response = "Invalid";
+                }
+                if (response.contains("Invalid"))
+                    System.out.println(response);
+            }//Executes until the user enters a correct age.
+            while (response.equals("Invalid"));
+        }
     }
     //Method to get the return time if the user choose round trip.
     void setReturnTime() {
@@ -212,7 +245,7 @@ public class UserInputs extends DataBaseOperations {
     }
 //To get the time for the flight.
     void setTime() {
-        //Printing the pervious inputs as much as possible.
+        //Printing the previous inputs as much as possible.
         clearScreen();
         System.out.println("Departure From: " + departure + "\t\tArrival to:" + arrival);
         System.out.println(dateForFlight);
@@ -434,6 +467,15 @@ public class UserInputs extends DataBaseOperations {
                 System.out.println(response);
 
         } while (response.equals("Invalid Input try again."));
+    }
+    public void initiateUserInputs(int i){
+        this.isLoggedIn = userDBOutput.get(i).isLoggedIn();
+        this.userName = userDBOutput.get(i).getUserName();
+        this.age =userDBOutput.get(i).getAge();
+        this.gender = userDBOutput.get(i).getGender();
+        this.mobileNumber = userDBOutput.get(i).getMobileNumber();
+        this.mailId = userDBOutput.get(i).getEMail();
+        setSelectTripType();
     }
 
 }

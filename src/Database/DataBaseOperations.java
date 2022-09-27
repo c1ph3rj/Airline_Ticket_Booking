@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseOperations {
-    final List<FlightDataBase> flightDB = new ArrayList<>();
+    public final List<FlightDataBase> flightDB = new ArrayList<>();
     JSONArray DB;
-    List<userDataBase> userDBOutput = new ArrayList<>();
-    JSONArray outputData;
+    public List<userDataBase> userDBOutput = new ArrayList<>();
+    JSONArray userAccountDetails;
 
-    void flightDataBase() throws IOException, ParseException {
+    public void flightDataBase() throws IOException, ParseException {
         Object obj = new JSONParser().parse(new FileReader("src/Database/flightDataBase.json"));
         DB = (JSONArray) obj;
         for (Object item : DB) {
@@ -27,9 +27,9 @@ public class DataBaseOperations {
 
     public void userDataBase() throws IOException, ParseException {
         Object userObj = new JSONParser().parse(new FileReader("src/Database/userDataBase.json"));
-        outputData = (JSONArray) userObj;
-        for (Object item : outputData) {
-            userDBOutput.add(new userDataBase((String) ((JSONObject) item).get("userName"), (String) ((JSONObject) item).get("emailId"), (String) ((JSONObject) item).get("mobileNo"), ((Long) ((JSONObject) item).get("age")).intValue(), (String) ((JSONObject) item).get("gender"), (JSONObject) ((JSONObject) item).get("detailsOfTheFLight")));
+        userAccountDetails = (JSONArray) userObj;
+        for (Object item : userAccountDetails) {
+            userDBOutput.add(new userDataBase((boolean) ((JSONObject) item).get("isLogin"),(String) ((JSONObject) item).get("userName"), (String) ((JSONObject) item).get("emailId"), (String) ((JSONObject) item).get("mobileNo"), ((Long) ((JSONObject) item).get("age")).intValue(), (String) ((JSONObject) item).get("gender"), (JSONObject) ((JSONObject) item).get("detailsOfTheFLight")));
 
         }
     }
@@ -43,8 +43,8 @@ public class DataBaseOperations {
         obj.put("age", age);
         obj.put("gender", gender);
         obj.put("detailsOfTheFLight", flightObj);
-        outputData.add(userDBOutput.size(), obj);
-        fileWriter.write(outputData.toJSONString());
+        userAccountDetails.add(userDBOutput.size(), obj);
+        fileWriter.write(userAccountDetails.toJSONString());
         fileWriter.close();
     }
 
