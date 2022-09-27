@@ -1,3 +1,4 @@
+package Database;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,36 +16,64 @@ public class DataFromUser {
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
     private Date today = new Date();
-    private String returnTime, time, flight, flightClass, departureDate, returnDate, response, arrival, departure, tripType, dateForFlight;
-    private final List < InputData > userDBInput = new ArrayList < > ();
-    private final List < OutputData > userDBOutput = new ArrayList < > ();
+    private String returnTime = "", time, flight, flightClass, departureDate, returnDate, response, arrival, departure, tripType, dateForFlight;
+    private List <userDataBase> userDBOutput = new ArrayList < > ();
     private JSONArray outputData;
+    private int flightNo;
     private JSONArray DB;
-    private final List < FlightDataBase > flightDB = new ArrayList < > ();
+    private final List <FlightDataBase> flightDB = new ArrayList < > ();
     private final Scanner scanner = new Scanner(System.in);
-
-    void clearScreen() {
-        System.out.print("\033[H\033[2J");
+    public void clearScreen() {
+        System.out.print("\n");
         System.out.flush();
         System.out.println("\n__________  C1ph3R AirLines  __________\n");
     }
 
-    void flightDataBase() throws IOException, ParseException {
-        Object obj = new JSONParser().parse(new FileReader("src/flightDataBase.json"));
+    public void flightDataBase() throws IOException, ParseException {
+        Object obj = new JSONParser().parse(new FileReader("src/Database/flightDataBase.json"));
         DB = (JSONArray) obj;
         for (Object item: DB) {
             flightDB.add(new FlightDataBase((String)((JSONObject) item).get("flightName"), ((Long)((JSONObject) item).get("noOfSeats")).intValue(), (String)((JSONObject) item).get("departureLocation"), (String)((JSONObject) item).get("totalDuration"), (JSONObject)((JSONObject) item).get("time"), (String)((JSONObject) item).get("arrivalLocation"), ((Long)((JSONObject) item).get("checkInFlight")).intValue(), (JSONObject)((JSONObject) item).get("inFirstClass"), (JSONObject)((JSONObject) item).get("inSecondClass"), (JSONObject)((JSONObject) item).get("inBusinessClass")));
         }
     }
-    void userDataBase() throws IOException, ParseException {
-        Object obj = new JSONParser().parse(new FileReader("src/userDataBase.json"));
-        outputData = (JSONArray) obj;
+    public void userDataBase() throws IOException, ParseException {
+        Object userObj = new JSONParser().parse(new FileReader("src/Database/userDataBase.json"));
+        outputData = (JSONArray) userObj;
         for (Object item: outputData) {
-            userDBOutput.add(new OutputData((String)((JSONObject) item).get("userName"), (String)((JSONObject) item).get("eMail"), (String)((JSONObject) item).get("mobileNumber"), ((Long)((JSONObject) item).get("age")).intValue(), (String)((JSONObject) item).get("gender")));
+            userDBOutput.add(new userDataBase((String)((JSONObject) item).get("userName"), (String)((JSONObject) item).get("emailId"), (String)((JSONObject) item).get("mobileNo"), ((Long)((JSONObject) item).get("age")).intValue(), (String)((JSONObject) item).get("gender"), (JSONObject)((JSONObject) item).get("detailsOfTheFLight")));
+
         }
     }
+    void updateUserDataBase(String userName, String mailId, String mobileNumber, int age, String gender) throws IOException {
+        FileWriter fileWriter = new FileWriter("src/Database/userDataBase.json");
+        JSONObject flightObj = new JSONObject();
+        flightObj.put("tripType", tripType);
+        flightObj.put("from", departure);
+        flightObj.put("to", arrival);
+        flightObj.put("Date", dateForFlight);
+        flightObj.put("time", time);
+        flightObj.put("returnTimeIfAvailable", returnTime);
+        flightObj.put("flightClass", flightClass);
+        if (flightClass.equals("First"))
+            flightObj.put("detailsOfFlightClass", flightDB.get(flightNo).inFirstClass);
+        else if (flightClass.equals("Second"))
+            flightObj.put("detailsOfFlightClass", flightDB.get(flightNo).inSecondClass);
+        else if (flightClass.equals("Business"))
+            flightObj.put("detailsOfFlightClass", flightDB.get(flightNo).inBusinessClass);
+        JSONObject obj = new JSONObject();
+        obj.put("userName", userName);
+        obj.put("emailId", mailId);
+        obj.put("mobileNo", mobileNumber);
+        obj.put("age", age);
+        obj.put("gender", gender);
+        obj.put("detailsOfTheFLight", flightObj);
+        outputData.add(userDBOutput.size(), obj);
+        fileWriter.write(outputData.toJSONString());
+        System.out.println(outputData.toJSONString());
+        fileWriter.close();
+    }
 
-    private void userDetailsAsInput() throws IOException {
+    void userDetailsAsInput() throws IOException {
         System.out.println("__________ Enter the below details to book the flight __________");
         System.out.println("Enter your UserName:");
         String userName = scanner.next();
@@ -56,37 +85,42 @@ public class DataFromUser {
             mailId = scanner.next();
             Matcher matcher = emailPattern.matcher(mailId);
             result = (mailId.isEmpty()) ? "please enter a value to verify!" : (matcher.matches()) ? (mailId + " is a valid mail id.\n") : (mailId + " is a invalid mail id! try again.\n");
+            if (result.contains("invalid"))
+                System.out.println(result);
         }
         while (result.contains("invalid") || result.contains("value"));
         System.out.println("Enter your Mobile Number: ");
         String mobileNumber;
-        Pattern mobileNoPattern = Pattern.compile( "^[^0-5][0-9]{9}$");
+        Pattern mobileNoPattern = Pattern.compile("^[^0-5][0-9]{9}$");
         do {
             mobileNumber = scanner.next();
             Matcher matcher = mobileNoPattern.matcher(mobileNumber);
             result = (mobileNumber.isEmpty()) ? "please enter a value to verify!" : (matcher.matches()) ? (mobileNumber + " is a valid mobile number.\n") : (mobileNumber + " is a invalid mobile number! try again.\n");
+            if (result.contains("invalid mobile"))
+                System.out.println(result);
         } while (result.contains("invalid") || result.contains("value"));
         System.out.println("Enter your age:");
         String age;
-        do{
+        do {
             age = scanner.next();
-            try{
-                result = (Integer.parseInt(age)<=70&&Integer.parseInt(age)>=1)?"Age is valid":"Age is invalid. Try again.";
-            }catch(Exception e){
-                result= "Age is invalid. Try again.";
+            try {
+                result = (Integer.parseInt(age) <= 70 && Integer.parseInt(age) >= 1) ? "Age is valid" : "Age is invalid. Try again.";
+            } catch (Exception e) {
+                result = "Age is invalid. Try again.";
             }
-        }while (result.equals("Age is invalid. Try again."));
+            if (result.contains("invalid."))
+                System.out.println(result);
+        } while (result.equals("Age is invalid. Try again."));
         System.out.println("Enter gender:\n1 for male\n2 for female\n3 for others");
         String gender;
-        do{
+        do {
             gender = scanner.next();
-            gender = (gender.equals("1"))?"Male":(gender.equals("2"))?"FemLale":(gender.equals("3"))?"Others":"Invalid Gender.";
-        }while(gender.contains("Invalid"));
-        userDBOutput.add(new OutputData(userName,mailId,mobileNumber,Integer.parseInt(age),gender));
+            gender = (gender.equals("1")) ? "Male" : (gender.equals("2")) ? "FemLale" : (gender.equals("3")) ? "Others" : "Invalid Gender.";
+            if (gender.contains("Invalid"))
+                System.out.println(gender);
+        } while (gender.contains("Invalid"));
+        updateUserDataBase(userName, mailId, mobileNumber, Integer.parseInt(age), gender);
         System.out.println("Success");
-        FileWriter fileWriter = new FileWriter("src/userDataBase.json");
-        fileWriter.write(outputData.toJSONString());
-        fileWriter.close();
         System.exit(0);
 
     }
@@ -103,8 +137,10 @@ public class DataFromUser {
             returnTime = scanner.next();
             try {
                 if ((Integer.parseInt(returnTime)) <= departureTime.size() && Integer.parseInt(returnTime) != 0) {
-                    System.out.println((returnTime) + ". Departure time : " + departureTime.get(Integer.parseInt(returnTime) - 1) + "\tArrival time: " + arrivalTime.get(Integer.parseInt(returnTime) - 1));
+                    returnTime = (returnTime) + ". Departure time : " + departureTime.get(Integer.parseInt(returnTime) - 1) + "\tArrival time: " + arrivalTime.get(Integer.parseInt(returnTime) - 1);
+                    System.out.println(returnTime);
                     response = "Time Occurred";
+                    userDetailsAsInput();
                     break;
                 } else response = "invalid Input! try again.";
             } catch (Exception e) {
@@ -127,7 +163,8 @@ public class DataFromUser {
             time = scanner.next();
             try {
                 if ((Integer.parseInt(time)) <= departureTime.size() && Integer.parseInt(time) != 0) {
-                    System.out.println((time) + ". Departure time : " + departureTime.get(Integer.parseInt(time) - 1) + "\tArrival time: " + arrivalTime.get(Integer.parseInt(time) - 1));
+                    time = (time) + ". Departure time : " + departureTime.get(Integer.parseInt(time) - 1) + "\tArrival time: " + arrivalTime.get(Integer.parseInt(time) - 1);
+                    System.out.println(time);
                     response = "Time Occurred";
                     if (tripType.equals("RoundTrip"))
                         setReturnTime();
@@ -150,10 +187,11 @@ public class DataFromUser {
         for (int i = 0; i < flightDB.size(); i++) {
             if (departure.equals(flightDB.get(i).departureLocation) && arrival.equals(flightDB.get(i).arrivalLocation)) {
                 System.out.println("____________________________________________");
-                System.out.println("Select " + (i + 1) + " for the flight below:");
+                System.out.println("Select " + (flightNo + 1) + " for the flight below:");
                 System.out.println("Name of the airlines:" + flightDB.get(i).flightName);
                 System.out.println("Total duration: " + flightDB.get(i).totalDuration);
                 System.out.println("Check in(Cabin):" + flightDB.get(i).checkInCabin + " Kg MAX.");
+                flightNo = i;
                 flight = String.valueOf(flightDB.indexOf(flightDB.get(i)) + 1);
                 if ((flightClass.equals("Business")))
                     businessClass(i);
@@ -304,7 +342,7 @@ public class DataFromUser {
             }
         } while (response.equals("Invalid Input try again."));
     }
-    void setSelectTripType() {
+    public void setSelectTripType() {
         System.out.println("Select the trip type:\n");
         System.out.println("1. Oneway\n2. RoundTrip\n");
         do {

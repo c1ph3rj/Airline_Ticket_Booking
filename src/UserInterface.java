@@ -1,6 +1,6 @@
-import org.json.simple.*;
+import Database.DataFromUser;
 import org.json.simple.parser.*;
-import java.io.FileReader;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -8,11 +8,10 @@ import java.util.*;
 public class UserInterface extends DataFromUser {
  private Scanner scanner = new Scanner(System.in);
 
-    void firstPageOfTheAirLines(){
+    void firstPageOfTheAirLines() throws IOException {
         clearScreen();
         System.out.println("Welcome to C1ph3R Airlines");
         setSelectTripType();
-        setTime();
 
     }
     UserInterface() throws IOException, ParseException {
