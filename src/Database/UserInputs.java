@@ -327,7 +327,7 @@ public class UserInputs extends DataBaseOperations {
         System.out.println("Price for Single person: " + flightDB.get(i).inSecondClass.get("price"));
         System.out.println("No of seats available: " + flightDB.get(i).inSecondClass.get("noOfSeatsAvailableInSecondClass"));
     }
-
+//Method to set the data for the flight.
     void setDate() throws java.text.ParseException {
         clearScreen();
         System.out.println("Departure From : " + departure + "\t\tArrival to :" + arrival);
@@ -348,7 +348,7 @@ public class UserInputs extends DataBaseOperations {
             System.out.println(response);
         } while (response.contains("Enter a valid date"));
     }
-
+// Method to get the return date from the user based on the trip type.
     void setReturnDate() throws java.text.ParseException {
         clearScreen();
         System.out.println("Departure From : " + departure + "\t\tArrival to :" + arrival);
@@ -367,7 +367,7 @@ public class UserInputs extends DataBaseOperations {
             System.out.println(response);
         } while (response.contains("Enter a valid date"));
     }
-
+//method to select destination location.
     void setSelectArrival() {
         clearScreen();
         ArrayList<String> listOfCities = new ArrayList<>();
@@ -393,7 +393,7 @@ public class UserInputs extends DataBaseOperations {
             }
         } while (response.equals("Invalid Input try again."));
     }
-
+//Method to select the departure location.
     void setSelectDeparture() {
         clearScreen();
         ArrayList<String> listOfCities = new ArrayList<>();
@@ -419,7 +419,7 @@ public class UserInputs extends DataBaseOperations {
             }
         } while (response.equals("Invalid Input try again."));
     }
-
+//Method to set the trip type.
     public void setSelectTripType() {
         System.out.println("Select the trip type:\n");
         System.out.println("1. Oneway\n2. RoundTrip\n");
