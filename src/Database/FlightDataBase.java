@@ -26,4 +26,5 @@ public class FlightDataBase {
         this.inSecondClass = inSecondClass;
         this.inBusinessClass = inBusinessClass;
     }
+
 }

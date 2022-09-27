@@ -36,6 +36,42 @@
       }
    },
    {
+      "flightName":"cipher1",
+      "noOfSeats":200,
+      "departureLocation":"Mumbai",
+      "totalDuration":"2hrs",
+      "time":{
+         "departure":[
+            "10 AM",
+            "5 PM"
+         ],
+         "arrival":[
+            "12 PM",
+            "7 PM"
+         ]
+      },
+      "arrivalLocation":"Chennai",
+      "checkInFlight":12,
+      "inFirstClass":{
+         "meals":"Cold Snacks",
+         "price":8000,
+         "checkInExtra":30,
+         "noOfSeatsAvailableInFirstClass":10
+      },
+      "inSecondClass":{
+         "meals":"none",
+         "price":6000,
+         "checkInExtra":20,
+         "noOfSeatsAvailableInSecondClass":30
+      },
+      "inBusinessClass":{
+         "meals":"Cold Drinks/Hot Drinks and Veg/Non-Veg Sandwich",
+         "price":12000,
+         "checkInExtra":30,
+         "noOfSeatsAvailableInBusinessClass":10
+      }
+   },
+   {
       "flightName":"cipher",
       "noOfSeats":200,
       "departureLocation":"Chennai",
@@ -807,6 +843,42 @@
          ]
       },
       "arrivalLocation":"Mumbai",
+      "checkInFlight":12,
+      "inFirstClass":{
+         "meals":"Cold Snacks",
+         "price":6000,
+         "checkInExtra":30,
+         "noOfSeatsAvailableInFirstClass":10
+      },
+      "inSecondClass":{
+         "meals":"none",
+         "price":4500,
+         "checkInExtra":20,
+         "noOfSeatsAvailableInSecondClass":30
+      },
+      "inBusinessClass":{
+         "meals":"Cold Drinks/Hot Drinks and Veg/Non-Veg Sandwich",
+         "price":11000,
+         "checkInExtra":30,
+         "noOfSeatsAvailableInBusinessClass":10
+      }
+   },
+   {
+      "flightName":"cipher1",
+      "noOfSeats":200,
+      "departureLocation":"goa",
+      "totalDuration":"2hrs",
+      "time":{
+         "departure":[
+            "11 AM",
+            "6 PM"
+         ],
+         "arrival":[
+            "1 PM",
+            "8 PM"
+         ]
+      },
+      "arrivalLocation":"Hyderabad",
       "checkInFlight":12,
       "inFirstClass":{
          "meals":"Cold Snacks",
