@@ -26,17 +26,4 @@ public class FlightDataBase {
         this.inSecondClass = inSecondClass;
         this.inBusinessClass = inBusinessClass;
     }
-
-    public JSONObject getInFirstClass() {
-        return inFirstClass;
-    }
-
-    public JSONObject getInSecondClass() {
-        return inSecondClass;
-    }
-
-    public JSONObject getInBusinessClass() {
-        return inBusinessClass;
-    }
-
 }

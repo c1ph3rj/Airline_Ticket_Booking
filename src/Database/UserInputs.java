@@ -7,6 +7,7 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -178,7 +179,7 @@ public class UserInputs extends DataBaseOperations {
                     break;
                 } else response = "invalid Input! try again.";
             } catch (Exception e) {
-                response = e.toString();
+                response = "invalid Input! try again.";
             }
             System.out.println(response);
         } while (response.equals("invalid Input! try again."));
@@ -206,7 +207,7 @@ public class UserInputs extends DataBaseOperations {
                     else userDetailsAsInput();
                 } else response = "invalid Input! try again.";
             } catch (Exception e) {
-                response = e.toString();
+                response = "invalid Input! try again.";
             }
             System.out.println(response);
         } while (response.equals("invalid Input! try again."));
@@ -252,6 +253,7 @@ public class UserInputs extends DataBaseOperations {
                 } else
                     System.out.println(response);
             } catch (Exception e) {
+                response = "Invalid Input try again.";
                 System.out.println(response);
             }
         } while (response.equals("Invalid Input try again."));
@@ -340,16 +342,20 @@ public class UserInputs extends DataBaseOperations {
 
     void setSelectArrival() {
         clearScreen();
+        ArrayList<String> arrivalList = new ArrayList<>();
         System.out.println("Select Destination \nTo:");
         for (int i = 0; i < flightDB.size(); i++) {
-            System.out.println((i + 1) + ". " + (flightDB.get(i).arrivalLocation));
+            if(!(arrivalList.contains((flightDB.get(i).arrivalLocation))))
+                arrivalList.add((flightDB.get(i).arrivalLocation));
         }
+        for(int i =0;i<arrivalList.size();i++)
+            System.out.println((i + 1) + ". " + arrivalList.get(i));
         do {
             arrival = scanner.next();
             try {
-                response = (Integer.parseInt(arrival) <= flightDB.size() && Integer.parseInt(arrival) > 0) ? "Arrival selected." : "Invalid Input try again.";
+                response = (Integer.parseInt(arrival) <= arrivalList.size() && Integer.parseInt(arrival) > 0) ? "Arrival selected." : "Invalid Input try again.";
                 if (response.equals("Arrival selected.")) {
-                    arrival = (flightDB.get(Integer.parseInt(arrival) - 1).arrivalLocation);
+                    arrival = arrivalList.get(Integer.parseInt(arrival)-1);
                     setDate();
                 } else
                     System.out.println(response);
@@ -362,16 +368,20 @@ public class UserInputs extends DataBaseOperations {
 
     void setSelectDeparture() {
         clearScreen();
+        ArrayList<String> listOfCities = new ArrayList<>();
         System.out.println("Select Destination \nFrom:");
         for (int i = 0; i < flightDB.size(); i++) {
-            System.out.println((i + 1) + ". " + (flightDB.get(i).departureLocation));
+            if(!(listOfCities.contains((flightDB.get(i).departureLocation))))
+                listOfCities.add((flightDB.get(i).departureLocation));
         }
+        for(int i =0;i<listOfCities.size();i++)
+            System.out.println((i + 1) + ". " + listOfCities.get(i));
         do {
             departure = scanner.next();
             try {
                 response = (Integer.parseInt(departure) <= flightDB.size() && Integer.parseInt(departure) > 0) ? "Departure selected." : "Invalid Input try again.";
                 if (response.equals("Departure selected.")) {
-                    departure = (flightDB.get(Integer.parseInt(departure) - 1).departureLocation);
+                    departure = listOfCities.get(Integer.parseInt(departure)-1);
                     setSelectArrival();
                 } else
                     System.out.println(response);

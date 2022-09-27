@@ -17,24 +17,4 @@ public class userDataBase {
         this.gender = gender;
         this.detailsOfTheFLight = detailsOfTheFLight;
     }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getEMail() {
-        return eMail;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public String getGender() {
-        return gender;
-    }
 }
