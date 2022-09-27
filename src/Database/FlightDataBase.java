@@ -10,19 +10,6 @@ public class FlightDataBase {
     JSONObject time;
     String arrivalLocation;
     int checkInCabin;
-
-    public JSONObject getInFirstClass() {
-        return inFirstClass;
-    }
-
-    public JSONObject getInSecondClass() {
-        return inSecondClass;
-    }
-
-    public JSONObject getInBusinessClass() {
-        return inBusinessClass;
-    }
-
     JSONObject inFirstClass;
     JSONObject inSecondClass;
     JSONObject inBusinessClass;
@@ -38,6 +25,18 @@ public class FlightDataBase {
         this.inFirstClass = inFirstClass;
         this.inSecondClass = inSecondClass;
         this.inBusinessClass = inBusinessClass;
+    }
+
+    public JSONObject getInFirstClass() {
+        return inFirstClass;
+    }
+
+    public JSONObject getInSecondClass() {
+        return inSecondClass;
+    }
+
+    public JSONObject getInBusinessClass() {
+        return inBusinessClass;
     }
 
 }
