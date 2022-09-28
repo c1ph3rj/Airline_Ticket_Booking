@@ -17,6 +17,9 @@ public class DataBaseOperations {
     public List<userDataBase> userDBOutput = new ArrayList<>();
     JSONArray userAccountDetails;
 
+    public DataBaseOperations() throws IOException {
+    }
+
     public void flightDataBase() throws IOException, ParseException {
         Object obj = new JSONParser().parse(new FileReader("src/Database/flightDataBase.json"));
         DB = (JSONArray) obj;
@@ -29,14 +32,14 @@ public class DataBaseOperations {
         Object userObj = new JSONParser().parse(new FileReader("src/Database/userDataBase.json"));
         userAccountDetails = (JSONArray) userObj;
         for (Object item : userAccountDetails) {
-            userDBOutput.add(new userDataBase((boolean) ((JSONObject) item).get("isLogin"),(String) ((JSONObject) item).get("userName"), (String) ((JSONObject) item).get("emailId"), (String) ((JSONObject) item).get("mobileNo"), ((Long) ((JSONObject) item).get("age")).intValue(), (String) ((JSONObject) item).get("gender"), (JSONObject) ((JSONObject) item).get("detailsOfTheFLight")));
+            userDBOutput.add(new userDataBase((boolean) ((JSONObject) item).get("isLogin"),(String) ((JSONObject) item).get("userName"), (String) ((JSONObject) item).get("password"),(String) ((JSONObject) item).get("emailId"), (String) ((JSONObject) item).get("mobileNo"), ((Long) ((JSONObject) item).get("age")).intValue(), (String) ((JSONObject) item).get("gender"), (JSONObject) ((JSONObject) item).get("detailsOfTheFLight")));
 
         }
     }
 
     void updateUserDataBase(String userName, String mailId, String mobileNumber, int age, String gender, JSONObject flightObj) throws IOException {
-        FileWriter fileWriter = new FileWriter("src/Database/userDataBase.json");
         JSONObject obj = new JSONObject();
+        FileWriter fileWriter = new FileWriter("src/Database/userDataBase.json");
         obj.put("userName", userName);
         obj.put("emailId", mailId);
         obj.put("mobileNo", mobileNumber);
@@ -44,6 +47,12 @@ public class DataBaseOperations {
         obj.put("gender", gender);
         obj.put("detailsOfTheFLight", flightObj);
         userAccountDetails.add(userDBOutput.size(), obj);
+        fileWriter.write(userAccountDetails.toJSONString());
+        fileWriter.close();
+    }
+    public void updateUserDataBase(boolean isLogin, int i) throws IOException {
+        FileWriter fileWriter = new FileWriter("src/Database/userDataBase.json");
+        ((JSONObject)userAccountDetails.get(i)).put("isLogin",isLogin);
         fileWriter.write(userAccountDetails.toJSONString());
         fileWriter.close();
     }

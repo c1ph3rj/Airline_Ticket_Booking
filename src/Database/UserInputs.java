@@ -13,36 +13,47 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 //Creating a Class file to get userInputs.
 public class UserInputs extends DataBaseOperations {
     //Creating variables and objects that are used across the class file.
     private final Pattern datePattern = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])[- /](0[1-9]|1[012])[- /](19|20)\\d\\d$");
     private final Scanner scanner = new Scanner(System.in);
+    private final Date today = new Date();
+    private int userId;
+    private final JSONObject flightObj = new JSONObject();
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     private Long bookingId;
-    private String userName, mailId, mobileNumber,gender;
+    private String userName, mailId, mobileNumber, gender, password;
     private int age;
     private boolean isLoggedIn = false;
-    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-    private final Date today = new Date();
     private String returnTime = "", time, flight, flightClass, departureDate, returnDate, response, arrival, departure, tripType, dateForFlight;
-    private final JSONObject flightObj = new JSONObject();
     private int flightNo;
+
     //Constructor to get the userDatabase and flightDatabase.
-    public UserInputs(String userName, String mailId, String mobileNumber, int age, String gender, boolean isLoggedIn){
+    public UserInputs(String userName,String password, String mailId, String mobileNumber, int age, String gender, boolean isLoggedIn) throws IOException {
+        super();
         this.isLoggedIn = isLoggedIn;
         this.userName = userName;
-        this.age =age;
+        this.password = password;
+        this.age = age;
         this.gender = gender;
         this.mobileNumber = mobileNumber;
         this.mailId = mailId;
     }
-    public UserInputs(){}
+
+    public UserInputs() throws IOException {
+        super();
+
+    }
+
     //Method to clear the screen.
     public void clearScreen() {
         System.out.print("\n");
         System.out.flush();
         System.out.println("\n__________  C1ph3R AirLines  __________\n");
     }
+
     //Method to save flight details to the DB.
     void flightDataToTheDB() {
         flightObj.put("tripType", tripType);
@@ -59,52 +70,39 @@ public class UserInputs extends DataBaseOperations {
         else if (flightClass.equals("Business"))
             flightObj.put("detailsOfFlightClass", flightDB.get(flightNo).inBusinessClass);
     }
+
     //Method to confirm Booking.
     void confirmBooking() throws IOException {
         System.out.println("Press >> 1 to confirm. ");
         System.out.println("Press >> 2 to cancel. ");
         System.out.println("Press >> 3 to Re enter data. ");
-       do{
-           String input = scanner.next();
-           if(input.equals("1")){
-               clearScreen();
-               flightDataToTheDB();
-               updateUserDataBase(userName, mailId, mobileNumber,age, gender, flightObj);
-               System.out.println("ThankYou For Booking in C1ph3R Airlines.\nBooking Id:" + bookingId+"\nBooked At:" + today +"\n\n");
-               System.exit(1);
-           }else if(input.equals("2")){
-               System.out.println("Your Booking Process has been canceled");
-               response = "done";
-               System.exit(1);
-           }else if(input.equals("3"))
-               userDetailsAsInput();
-           else
-               response = "Invalid";
-           System.out.println(response);
-       }while(response.equals("Invalid"));
+        do {
+            String input = scanner.next();
+            if (input.equals("1")) {
+                clearScreen();
+                flightDataToTheDB();
+                updateUserDataBase(userName, mailId, mobileNumber, age, gender, flightObj);
+                System.out.println("ThankYou For Booking in C1ph3R Airlines.\nBooking Id:" + bookingId + "\nBooked At:" + today + "\n\n");
+                System.exit(1);
+            } else if (input.equals("2")) {
+                System.out.println("Your Booking Process has been canceled");
+                response = "done";
+                System.exit(1);
+            } else if (input.equals("3"))
+                userDetailsAsInput();
+            else
+                response = "Invalid";
+            System.out.println(response);
+        } while (response.equals("Invalid"));
     }
+
     //Method to print the details of the user What we get.
     void printUserInputs() throws IOException {
         clearScreen();
         bookingId = new Random().nextLong();
         bookingId = (bookingId < 0) ? (bookingId * -1) : bookingId;
         System.out.println("____________ Confrim Booking ____________");
-        System.out.println("Booking Id : " + bookingId + "\nUserName   : " + userName + "\nE-Mail Id  : " + mailId + "\nMobile no  : " + mobileNumber + "\nAge        : " + age + "\nGender     : " + gender + "\n_________ details of the Flight _________" + "\nFlight Name: " + flightDB.get(flightNo).flightName + "\nFlight No  : " + (flightNo + 1) + "\nTrip Type  : " + tripType + "\nDeparture  : " + departure + "\nArrival    : " + arrival);
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println("\n" + dateForFlight);
-        System.out.println("\n" + time);
-        System.out.println("\nClass      : " + flightClass);
-        System.out.println("\nIn " + flightClass + " Class:-");
+        System.out.println("Booking Id : " + bookingId + "\nUserName   : " + userName + "\nE-Mail Id  : " + mailId + "\nMobile no  : " + mobileNumber + "\nAge        : " + age + "\nGender     : " + gender + "\n_________ details of the Flight _________" + "\nFlight Name: " + flightDB.get(flightNo).flightName + "\nFlight No  : " + (flightNo + 1) + "\nTrip Type  : " + tripType + "\nDeparture  : " + departure + "\nArrival    : " + arrival + "\n" + time + "\nClass      : " + flightClass + "\nIn " + flightClass + " Class:-");
         if ((flightClass.equals("Business"))) {
             System.out.println("Meals      : " + flightDB.get(flightNo).inBusinessClass.get("meals"));
             System.out.println("CheckIn(Extra) : " + flightDB.get(flightNo).inBusinessClass.get("checkInExtra") + "Kg");
@@ -114,23 +112,54 @@ public class UserInputs extends DataBaseOperations {
             System.out.println("Meals      : " + flightDB.get(flightNo).inFirstClass.get("meals"));
             System.out.println("CheckIn(Extra) : " + flightDB.get(flightNo).inFirstClass.get("checkInExtra"));
             System.out.println("_______________ total _______________");
-            System.out.println("Price for the flight: " + flightDB.get(flightNo).inFirstClass.get("price") );
-        }
-        else{
+            System.out.println("Price for the flight: " + flightDB.get(flightNo).inFirstClass.get("price"));
+        } else {
             System.out.println("Meals      : " + flightDB.get(flightNo).inSecondClass.get("meals"));
-            System.out.println("CheckIn(Extra) : "+ flightDB.get(flightNo).inSecondClass.get("checkInExtra"));
+            System.out.println("CheckIn(Extra) : " + flightDB.get(flightNo).inSecondClass.get("checkInExtra"));
             System.out.println("_______________ total _______________");
-            System.out.println("Price for the flight: RS." + flightDB.get(flightNo).inSecondClass.get("price") +"\n" );
+            System.out.println("Price for the flight: RS." + flightDB.get(flightNo).inSecondClass.get("price") + "\n");
             System.out.println("_____________________________________");
         }
         confirmBooking();
     }
+
     //Method to get UserDetails and Store in a DB.
     void registerNewAccount() throws IOException {
         System.out.println("__________ Enter the below details to book the flight __________");
-        System.out.println("Enter your UserName:");
         //For UserName.
-        userName = scanner.next();
+        System.out.println("Enter your UserName:");
+        Pattern userNamePattern = Pattern.compile("^[A-Za-z][A-Za-z0-9_]{7,29}$");
+        Matcher matches = userNamePattern.matcher(userName);
+        do {
+            userName = scanner.next();
+            Matcher matcher = userNamePattern.matcher(userName);
+            response = (userName.isEmpty()) ? "please enter a value to verify!" : (matcher.matches()) ? (userName + " is a valid UserName.\n") : (userName + " is a invalid UserName! try again.\n");
+            if (response.contains("invalid"))
+                System.out.println(response);
+            else {
+                for (int i = 0; i < userDBOutput.size(); i++) {
+                    if (userName.equals(userDBOutput.get(i).getUserName())) {
+                        response = "UserName Already exist";
+                        System.out.println(response);
+                    }
+                }
+            }
+        } while (response.contains("invalid") || response.contains("value") || response.contains("Already exist"));
+        //For password.
+        clearScreen();
+        System.out.println("Welcome " + userName + "\nEnter password:");
+        Pattern passwordPattern = Pattern.compile("(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d\\w\\W]{8,}$");
+        do {
+            System.out.println("Enter a Password :\n(Note : Password must contain a Caps letter , a small letter and a number with minimum length of 8.)");
+            password = scanner.nextLine();
+            //Matching the pattern of the password with the user input.
+            Matcher matcher = passwordPattern.matcher(password);
+            //Printing the output.
+            response = (password.isEmpty()) ? "please enter a value to verify!" : (matcher.matches()) ? (password + " is a valid Password.\n") : (password + " is a invalid Password! try again.\n");
+            System.out.println(response);
+        }
+        while (response.contains("invalid") || response.contains("value"));
+        //For EMail.
         System.out.println("Enter your E-Mail id:");
         String result;
         //To verify email Pattern.
@@ -182,25 +211,26 @@ public class UserInputs extends DataBaseOperations {
         while (gender.contains("Invalid"));
         printUserInputs();
     }
+
     void userDetailsAsInput() throws IOException {
         System.out.println(isLoggedIn);
-        if(!isLoggedIn){
-            System.out.println("hiii");
+        if (!isLoggedIn) {
             registerNewAccount();
-        }else{
+        } else {
             System.out.println("Hi " + userName);
             System.out.println("Your account has already logged in,\nDo you need to continue with your details\nor Login with other Id?");
             System.out.println("press 1 to Continue\npress 2 to Logout and register New account.");
             do {
                 String userSelection = scanner.next();
                 try {
-                    if(userSelection.equals("1")){
-                        response ="continue";
+                    if (userSelection.equals("1")) {
+                        response = "continue";
                         printUserInputs();
-                    }else if(userSelection.equals("2")){
-                        response ="continue";
+                    } else if (userSelection.equals("2")) {
+                        response = "continue";
+                        updateUserDataBase(false,userId );
                         registerNewAccount();
-                    }else
+                    } else
                         response = "Invalid";
                 } catch (Exception e) {
                     response = "Invalid";
@@ -211,6 +241,7 @@ public class UserInputs extends DataBaseOperations {
             while (response.equals("Invalid"));
         }
     }
+
     //Method to get the return time if the user choose round trip.
     void setReturnTime() {
         //printing previous Input details as short as possible.
@@ -243,7 +274,8 @@ public class UserInputs extends DataBaseOperations {
         while (response.equals("invalid Input! try again."));
 
     }
-//To get the time for the flight.
+
+    //To get the time for the flight.
     void setTime() {
         //Printing the previous inputs as much as possible.
         clearScreen();
@@ -273,7 +305,8 @@ public class UserInputs extends DataBaseOperations {
         }//Executes loops until user enters the correct value.
         while (response.equals("invalid Input! try again."));
     }
-// Method to select the flight.
+
+    // Method to select the flight.
     private void selectFlight() {
         clearScreen();
         System.out.println("Departure From: " + departure + "\t\tArrival to:" + arrival);
@@ -319,7 +352,8 @@ public class UserInputs extends DataBaseOperations {
             }
         } while (response.equals("Invalid Input try again."));
     }
-//Method to select the flight class.
+
+    //Method to select the flight class.
     void setFlightCLass() {
         clearScreen();
         System.out.println("Departure From: " + departure + "\t\tArrival to:" + arrival);
@@ -336,7 +370,8 @@ public class UserInputs extends DataBaseOperations {
                 System.out.println(response);
         } while (response.equals("Invalid Input try again."));
     }
-//method to print the first class values.
+
+    //method to print the first class values.
     private void firstClass(int i) {
         System.out.println("\n--------------- In First Class ---------------");
         System.out.println("Meals in First Class: " + flightDB.get(i).inFirstClass.get("meals"));
@@ -344,7 +379,8 @@ public class UserInputs extends DataBaseOperations {
         System.out.println("Price for Single person: " + flightDB.get(i).inFirstClass.get("price"));
         System.out.println("No of seats available: " + flightDB.get(i).inFirstClass.get("noOfSeatsAvailableInFirstClass"));
     }
-//Method to print the business class values.
+
+    //Method to print the business class values.
     private void businessClass(int i) {
         System.out.println("\n-------------- In Business Class -------------");
         System.out.println("Meals in Business Class: " + flightDB.get(i).inBusinessClass.get("meals"));
@@ -352,7 +388,8 @@ public class UserInputs extends DataBaseOperations {
         System.out.println("Price for Single person: " + flightDB.get(i).inBusinessClass.get("price"));
         System.out.println("No of seats available: " + flightDB.get(i).inBusinessClass.get("noOfSeatsAvailableInBusinessClass"));
     }
-//Method to print the second class values.
+
+    //Method to print the second class values.
     private void secondClass(int i) {
         System.out.println("\n--------------- In Second Class --------------");
         System.out.println("Meals in Second Class: " + flightDB.get(i).inSecondClass.get("meals"));
@@ -360,7 +397,8 @@ public class UserInputs extends DataBaseOperations {
         System.out.println("Price for Single person: " + flightDB.get(i).inSecondClass.get("price"));
         System.out.println("No of seats available: " + flightDB.get(i).inSecondClass.get("noOfSeatsAvailableInSecondClass"));
     }
-//Method to set the data for the flight.
+
+    //Method to set the data for the flight.
     void setDate() throws java.text.ParseException {
         clearScreen();
         System.out.println("Departure From : " + departure + "\t\tArrival to :" + arrival);
@@ -381,7 +419,8 @@ public class UserInputs extends DataBaseOperations {
             System.out.println(response);
         } while (response.contains("Enter a valid date"));
     }
-// Method to get the return date from the user based on the trip type.
+
+    // Method to get the return date from the user based on the trip type.
     void setReturnDate() throws java.text.ParseException {
         clearScreen();
         System.out.println("Departure From : " + departure + "\t\tArrival to :" + arrival);
@@ -400,23 +439,24 @@ public class UserInputs extends DataBaseOperations {
             System.out.println(response);
         } while (response.contains("Enter a valid date"));
     }
-//method to select destination location.
+
+    //method to select destination location.
     void setSelectArrival() {
         clearScreen();
         ArrayList<String> listOfCities = new ArrayList<>();
         System.out.println("Select Destination \nTo:");
         for (int i = 0; i < flightDB.size(); i++) {
-            if(!(listOfCities.contains((flightDB.get(i).arrivalLocation)))&&!departure.equals((flightDB.get(i).arrivalLocation)))
+            if (!(listOfCities.contains((flightDB.get(i).arrivalLocation))) && !departure.equals((flightDB.get(i).arrivalLocation)))
                 listOfCities.add((flightDB.get(i).arrivalLocation));
         }
-        for(int i =0;i<listOfCities.size();i++)
+        for (int i = 0; i < listOfCities.size(); i++)
             System.out.println((i + 1) + ". " + listOfCities.get(i));
         do {
             arrival = scanner.next();
             try {
                 response = (Integer.parseInt(arrival) <= listOfCities.size() && Integer.parseInt(arrival) > 0) ? "Arrival selected." : "Invalid Input try again.";
                 if (response.equals("Arrival selected.")) {
-                    arrival = listOfCities.get(Integer.parseInt(arrival)-1);
+                    arrival = listOfCities.get(Integer.parseInt(arrival) - 1);
                     setDate();
                 } else
                     System.out.println(response);
@@ -426,23 +466,24 @@ public class UserInputs extends DataBaseOperations {
             }
         } while (response.equals("Invalid Input try again."));
     }
-//Method to select the departure location.
+
+    //Method to select the departure location.
     void setSelectDeparture() {
         clearScreen();
         ArrayList<String> listOfCities = new ArrayList<>();
         System.out.println("Select Destination \nFrom:");
         for (int i = 0; i < flightDB.size(); i++) {
-            if(!(listOfCities.contains((flightDB.get(i).departureLocation))))
+            if (!(listOfCities.contains((flightDB.get(i).departureLocation))))
                 listOfCities.add((flightDB.get(i).departureLocation));
         }
-        for(int i =0;i<listOfCities.size();i++)
+        for (int i = 0; i < listOfCities.size(); i++)
             System.out.println((i + 1) + ". " + listOfCities.get(i));
         do {
             departure = scanner.next();
             try {
                 response = (Integer.parseInt(departure) <= flightDB.size() && Integer.parseInt(departure) > 0) ? "Departure selected." : "Invalid Input try again.";
                 if (response.equals("Departure selected.")) {
-                    departure = listOfCities.get(Integer.parseInt(departure)-1);
+                    departure = listOfCities.get(Integer.parseInt(departure) - 1);
                     setSelectArrival();
                 } else
                     System.out.println(response);
@@ -452,7 +493,8 @@ public class UserInputs extends DataBaseOperations {
             }
         } while (response.equals("Invalid Input try again."));
     }
-//Method to set the trip type.
+
+    //Method to set the trip type.
     public void setSelectTripType() {
         System.out.println("Select the trip type:\n");
         System.out.println("1. Oneway\n2. RoundTrip\n");
@@ -468,13 +510,15 @@ public class UserInputs extends DataBaseOperations {
 
         } while (response.equals("Invalid Input try again."));
     }
-    public void initiateUserInputs(int i){
+
+    public void initiateUserInputs(int i) {
         this.isLoggedIn = userDBOutput.get(i).isLoggedIn();
         this.userName = userDBOutput.get(i).getUserName();
-        this.age =userDBOutput.get(i).getAge();
+        this.age = userDBOutput.get(i).getAge();
         this.gender = userDBOutput.get(i).getGender();
         this.mobileNumber = userDBOutput.get(i).getMobileNumber();
         this.mailId = userDBOutput.get(i).getEMail();
+        userId= i;
         setSelectTripType();
     }
 

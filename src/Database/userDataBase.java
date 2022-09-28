@@ -38,14 +38,20 @@ public class userDataBase {
     private String mobileNumber;
     private int age;
     private String gender;
+    private String password;
     private JSONObject detailsOfTheFLight;
-    public userDataBase(boolean isLoggedIn, String userName, String eMail, String mobileNumber, int age, String gender, JSONObject detailsOfTheFLight) {
+    public userDataBase(boolean isLoggedIn, String userName,String password, String eMail, String mobileNumber, int age, String gender, JSONObject detailsOfTheFLight) {
         this.isLoggedIn = isLoggedIn;
         this.userName = userName;
+        this.password = password;
         this.eMail = eMail;
         this.mobileNumber = mobileNumber;
         this.age = age;
         this.gender = gender;
         this.detailsOfTheFLight = detailsOfTheFLight;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
