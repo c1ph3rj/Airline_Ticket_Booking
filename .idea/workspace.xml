@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="70877913-578c-496a-ba7b-4193a9fb8fa2" name="Changes" comment="AirLines">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_27_2022_8_42_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_27_2022_8_42_AM__Changes_.xml" afterDir="false" />
+    <list default="true" id="70877913-578c-496a-ba7b-4193a9fb8fa2" name="Changes" comment="Create README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/DataBaseOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/DataBaseOperations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/UserInputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/UserInputs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/userDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/userDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/userDataBase.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/userDataBase.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +18,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Jeevaprakash G &lt;77578241+c1ph3rj@users.noreply.github.com&gt;" />
+      </list>
+    </option>
     <option name="PUSH_TAGS">
       <GitPushTagMode>
         <option name="argument" value="--tags" />
@@ -31,7 +30,6 @@
       </GitPushTagMode>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/UserInterface.java" root0="SKIP_INSPECTION" />
@@ -102,7 +100,21 @@
       <option name="project" value="LOCAL" />
       <updated>1663999863298</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Create README.md">
+      <created>1664328104420</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1664328104420</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Create README.md">
+      <created>1664328323134</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1664328323134</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -117,10 +129,15 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="ggg" />
     <MESSAGE value="AirLines" />
-    <option name="LAST_COMMIT_MESSAGE" value="AirLines" />
+    <MESSAGE value="Create README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create README.md" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

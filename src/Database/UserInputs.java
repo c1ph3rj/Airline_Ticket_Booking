@@ -1,14 +1,15 @@
 //Importing required user defined packages.
 package Database;
 //Importing Libraries of JSON.
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-//Importring predefined Java Libraries.
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Random;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -86,33 +87,32 @@ public class UserInputs extends DataBaseOperations {
     void printUserInputs() throws IOException {
         clearScreen();
         bookingId = new Random().nextLong();
-        bookingId = (bookingId<0)?(bookingId*-1):bookingId;
+        bookingId = (bookingId < 0) ? (bookingId * -1) : bookingId;
         System.out.println("____________ Confrim Booking ____________");
-        System.out.println("Booking Id : " + bookingId);
-        System.out.println("UserName   : " + userName);
-        System.out.println("E-Mail Id  : " + mailId);
-        System.out.println("Mobile no  : " + mobileNumber);
-        System.out.println("Age        : " + age );
-        System.out.println("Gender     : " + gender);
-        System.out.println("_________ details of the Flight _________");
-        System.out.println("Flight Name: " + flightDB.get(flightNo).flightName);
-        System.out.println("Flight No  : " + (flightNo + 1));
-        System.out.println("Trip Type  : " + tripType);
-        System.out.println("Departure  : " + departure);
-        System.out.println("Arrival    : " + arrival);
-        System.out.println(dateForFlight);
-        System.out.println(time);
-        System.out.println("Class      : " + flightClass);
-        System.out.println("In "+flightClass+" Class:-");
-        if ((flightClass.equals("Business"))){
+        System.out.println("Booking Id : " + bookingId + "\nUserName   : " + userName + "\nE-Mail Id  : " + mailId + "\nMobile no  : " + mobileNumber + "\nAge        : " + age + "\nGender     : " + gender + "\n_________ details of the Flight _________" + "\nFlight Name: " + flightDB.get(flightNo).flightName + "\nFlight No  : " + (flightNo + 1) + "\nTrip Type  : " + tripType + "\nDeparture  : " + departure + "\nArrival    : " + arrival);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("\n" + dateForFlight);
+        System.out.println("\n" + time);
+        System.out.println("\nClass      : " + flightClass);
+        System.out.println("\nIn " + flightClass + " Class:-");
+        if ((flightClass.equals("Business"))) {
             System.out.println("Meals      : " + flightDB.get(flightNo).inBusinessClass.get("meals"));
-            System.out.println("CheckIn(Extra) : "+ flightDB.get(flightNo).inBusinessClass.get("checkInExtra") + "Kg");
+            System.out.println("CheckIn(Extra) : " + flightDB.get(flightNo).inBusinessClass.get("checkInExtra") + "Kg");
             System.out.println("_______________ total _______________");
             System.out.println("Price for the flight: " + flightDB.get(flightNo).inBusinessClass.get("price"));
-        }
-        else if ((flightClass.equals("First"))) {
+        } else if ((flightClass.equals("First"))) {
             System.out.println("Meals      : " + flightDB.get(flightNo).inFirstClass.get("meals"));
-            System.out.println("CheckIn(Extra) : "+ flightDB.get(flightNo).inFirstClass.get("checkInExtra"));
+            System.out.println("CheckIn(Extra) : " + flightDB.get(flightNo).inFirstClass.get("checkInExtra"));
             System.out.println("_______________ total _______________");
             System.out.println("Price for the flight: " + flightDB.get(flightNo).inFirstClass.get("price") );
         }
