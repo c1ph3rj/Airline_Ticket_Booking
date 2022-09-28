@@ -15,13 +15,14 @@ public class UserInterface extends UserInputs {
         flightDataBase();
     }
 
-    void isUserLoggedIn() throws IOException, ParseException {
+    public void isUserLoggedIn() throws IOException, ParseException {
+        userDataBase();
         boolean userAlreadyLoggedIn = false;
         for (int i = 0; i < userDBOutput.size(); i++) {
             if (userDBOutput.get(i).isLoggedIn()) {
                 clearScreen();
                 System.out.println("Welcome Back " + userDBOutput.get(i).getUserName());
-                initiateUserInputs(i);
+                optionsToTheUsers(i);
                 userAlreadyLoggedIn = true;
             }
         }
@@ -49,8 +50,7 @@ public class UserInterface extends UserInputs {
                         if (password.equals(userDBOutput.get(i).getPassword())) {
                             clearScreen();
                             updateUserDataBase(true,i);
-                            System.out.println("Successfully saved state");
-                            System.exit(1);
+                            isUserLoggedIn();
                         } else if(password.isEmpty())
                             System.out.println("Password cannot be empty.");
                         else {
@@ -69,11 +69,24 @@ public class UserInterface extends UserInputs {
         }while (response.contains("No users found.") );
     }
 
-    void optionsToTheUsers(){
-
+    void optionsToTheUsers(int userId) throws IOException, ParseException {
+        System.out.println("1 >>>> Search For Flight.\n2 >>>> Logout.");
+        response = scanner.next();
+        if(response.equals("1")){
+            setSelectTripType();
+            isUserLoggedIn();
+        }else if(response.equals("2")){
+            System.out.println("Logged Out SuccessFully");
+            updateUserDataBase(false,userId );
+            isUserLoggedIn();
+        }else
+            response = "invalid option.";
     }
 
+
     void firstPageOfTheAirLines() throws IOException, ParseException {
+
+        new UserInterface();
         isUserLoggedIn();
     }
 }

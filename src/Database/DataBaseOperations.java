@@ -20,7 +20,7 @@ public class DataBaseOperations {
     public DataBaseOperations() throws IOException {
     }
 
-    public void flightDataBase() throws IOException, ParseException {
+    protected void flightDataBase() throws IOException, ParseException {
         Object obj = new JSONParser().parse(new FileReader("src/Database/flightDataBase.json"));
         DB = (JSONArray) obj;
         for (Object item : DB) {
@@ -28,7 +28,7 @@ public class DataBaseOperations {
         }
     }
 
-    public void userDataBase() throws IOException, ParseException {
+    protected void userDataBase() throws IOException, ParseException {
         Object userObj = new JSONParser().parse(new FileReader("src/Database/userDataBase.json"));
         userAccountDetails = (JSONArray) userObj;
         for (Object item : userAccountDetails) {
@@ -50,11 +50,18 @@ public class DataBaseOperations {
         fileWriter.write(userAccountDetails.toJSONString());
         fileWriter.close();
     }
-    public void updateUserDataBase(boolean isLogin, int i) throws IOException {
+    void updateUserDataBase( int userId, JSONObject flightObj) throws IOException {
+        JSONObject obj = new JSONObject();
+        FileWriter fileWriter = new FileWriter("src/Database/userDataBase.json");
+        String value  = ((JSONObject)userAccountDetails.get(userId)).get("detailsOfTheFLight").toString() +","+ flightObj.toString();
+
+        fileWriter.write(userAccountDetails.toJSONString());
+        fileWriter.close();
+    }
+    protected void updateUserDataBase(boolean isLogin, int i) throws IOException {
         FileWriter fileWriter = new FileWriter("src/Database/userDataBase.json");
         ((JSONObject)userAccountDetails.get(i)).put("isLogin",isLogin);
         fileWriter.write(userAccountDetails.toJSONString());
         fileWriter.close();
     }
-
 }
