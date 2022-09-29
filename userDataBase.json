@@ -1,0 +1,72 @@
+[
+  {
+    "isLogin": false,
+    "password": "Qwerty",
+    "gender": "Male",
+    "emailId": "jeevarag1016@gmail.com",
+    "mobileNo": "9876543210",
+    "userName": "prakash",
+    "age": 20,
+    "detailsOfTheFLight": [
+      {
+        "returnTimeIfAvailable": "2. Departure time : 5 PM\tArrival time: 7 PM",
+        "tripType": "RoundTrip",
+        "from": "Mumbai",
+        "flightClass": "First",
+        "to": "Chennai",
+        "time": "1. Departure time : 10 AM\tArrival time: 12 PM",
+        "Date": "Departure Date: 29-09-2022 Return Date: 30-09-2022",
+        "detailsOfFlightClass": {
+          "price": 8000,
+          "checkInExtra": 30,
+          "noOfSeatsAvailableInFirstClass": 10,
+          "meals": "Cold Snacks"
+        }
+      },
+      {
+        "returnTimeIfAvailable": "",
+        "tripType": "OneWay",
+        "PNRNumber": 9032183901724396012,
+        "from": "Mumbai",
+        "flightClass": "Business",
+        "to": "Chennai",
+        "time": "1. Departure time : 10 AM\tArrival time: 12 PM",
+        "Date": "Departure Date: 30-09-2022",
+        "detailsOfFlightClass": {
+          "price": 12000,
+          "checkInExtra": 30,
+          "noOfSeatsAvailableInBusinessClass": 10,
+          "meals": "Cold Drinks\/Hot Drinks and Veg\/Non-Veg Sandwich"
+        }
+      }
+    ]
+  },
+  {
+    "isLogin": false,
+    "password": "Uzumakinaruto20",
+    "gender": "Male",
+    "emailId": "rs20jan1998s@gmail.com",
+    "mobileNo": "6369208301",
+    "userName": "Rajasekar",
+    "age": 24,
+    "detailsOfTheFLight": [
+      {},
+      {
+        "returnTimeIfAvailable": "",
+        "tripType": "OneWay",
+        "PNRNumber": 12886111700588095,
+        "from": "Mumbai",
+        "flightClass": "Business",
+        "to": "Kerala",
+        "time": "Date: 23-12-2022, Departure time at your location: 6 PM,Arrival time to your destination: 8 PM",
+        "Date": "Departure Date: 23-12-2022",
+        "detailsOfFlightClass": {
+          "price": 11000,
+          "checkInExtra": 30,
+          "noOfSeatsAvailableInBusinessClass": 10,
+          "meals": "Cold Drinks\/Hot Drinks and Veg\/Non-Veg Sandwich"
+        }
+      }
+    ]
+  }
+]

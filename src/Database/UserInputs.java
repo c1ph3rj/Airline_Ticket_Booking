@@ -93,6 +93,7 @@ public class UserInputs extends DataBaseOperations {
                 flightDataToTheDB();
                 updateUserDataBase(userNo,flightObj);
                 System.out.println("ThankYou For Booking in C1ph3R Airlines.\nPNR NUMBER:" + pNRNumber + "\nBooked At:" + today + "\n\n");
+                response = "";
                 break;
             } else if (input.equals("2")) {
                 System.out.println("Your Booking Process has been canceled");
@@ -112,7 +113,7 @@ public class UserInputs extends DataBaseOperations {
         pNRNumber = new Random().nextLong();
         pNRNumber = (pNRNumber < 0) ? (pNRNumber * -1) : pNRNumber;
         System.out.println(TEXT_PURPLE + "____________ Confrim Booking ____________");
-        System.out.println( TEXT_BLUE +"PNR Number : " + pNRNumber + "\nUserName : " + userName + "\nE-Mail Id  : " + mailId + "\nMobile no  : " + mobileNumber + "\nAge        : " + age + "\nGender     : " + gender + "\n_________ details of the Flight _________" + "\nFlight Name: " + flightDB.get(flightNo).flightName + "\nFlight No  : " + (flightNo + 1) + "\nTrip Type  : " + tripType + "\nDeparture  : " + departure + "\nArrival    : " + arrival + "\n" + time + "\nClass      : " + flightClass + "\nIn " + flightClass + " Class:-");
+        System.out.println( TEXT_BLUE +"PNR Number : " + pNRNumber + "\nUserName   : " + userName + "\nE-Mail Id  : " + mailId + "\nMobile no  : " + mobileNumber + "\nAge        : " + age + "\nGender     : " + gender + "\n_________ details of the Flight _________" + "\nFlight Name: " + flightDB.get(flightNo).flightName + "\nFlight No  : " + (flightNo + 1) + "\nTrip Type  : " + tripType + "\nDeparture  : " + departure + "\nArrival    : " + arrival + "\n" + time + "\nClass      : " + flightClass + "\nIn " + flightClass + " Class:-");
         if ((flightClass.equals("Business"))) {
             System.out.println("Meals      : " + flightDB.get(flightNo).inBusinessClass.get("meals"));
             System.out.println("CheckIn(Extra) : " + flightDB.get(flightNo).inBusinessClass.get("checkInExtra") + "Kg");
@@ -277,7 +278,7 @@ public class UserInputs extends DataBaseOperations {
             returnTime = scanner.next();
             try {
                 if ((Integer.parseInt(returnTime)) <= departureTime.size() && Integer.parseInt(returnTime) != 0) {
-                    returnTime = (returnDate) + ", Departure time at your destination: " + departureTime.get(Integer.parseInt(returnTime) - 1) + "\tArrival time at your location " + arrivalTime.get(Integer.parseInt(returnTime) - 1);
+                    returnTime = "Date: "+(returnDate) + ", Departure time at your destination: " + departureTime.get(Integer.parseInt(returnTime) - 1) + "\tArrival time at your location " + arrivalTime.get(Integer.parseInt(returnTime) - 1);
                     time = time + "\n" + returnTime;
                     System.out.println(returnTime);
                     response = "Time Occurred";
@@ -426,18 +427,22 @@ public class UserInputs extends DataBaseOperations {
         System.out.println(TEXT_BLUE + "Departure From : " + departure + "\t\tArrival to :" + arrival + TEXT_RESET);
         System.out.println(TEXT_YELLOW + "\nEnter Departure Date :" + TEXT_RESET + "\n(dd-mm-yyyy)\nExample: 10-03-2022");
         do {
-            departureDate = scanner.next();
-            Matcher dateMatch = datePattern.matcher(departureDate);
-            if (dateMatch.matches()) {
-                Date date1 = sdf.parse(departureDate);
-                if (date1.compareTo(today) > 0) {
-                    System.out.println("departure date set to : " + departureDate);
-                    response = "Departure Date has occurred";
-                    if (tripType.equals("RoundTrip"))
-                        setReturnDate();
-                    else setFlightCLass();
-                } else response = "Enter a valid date.";
-            } else response = "Enter a valid date in the format of (dd-mm-yyyy)\nExample: 10-03-2022";
+            try{
+                departureDate = scanner.next();
+                Matcher dateMatch = datePattern.matcher(departureDate);
+                if (dateMatch.matches()) {
+                    Date date1 = sdf.parse(departureDate);
+                    if (date1.compareTo(today) > 0) {
+                        System.out.println("departure date set to : " + departureDate);
+                        response = "Departure Date has occurred";
+                        if (tripType.equals("RoundTrip"))
+                            setReturnDate();
+                        else setFlightCLass();
+                    } else response = "Enter a valid date.";
+                } else response = "Enter a valid date in the format of (dd-mm-yyyy)\nExample: 10-03-2022";
+            }catch(Exception e){
+                response = "Enter a valid date in the format of (dd-mm-yyyy)\nExample: 10-03-2022";
+            }
             System.out.println(response);
         } while (response.contains("Enter a valid date"));
     }

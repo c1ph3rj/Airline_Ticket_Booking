@@ -10,8 +10,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/DataBaseOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/DataBaseOperations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/UserInputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/UserInputs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/userDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/userDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/userDataBase.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/userDataBase.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/flightDataBase.json" beforeDir="false" afterPath="$PROJECT_DIR$/flightDataBase.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/userDataBase.json" beforeDir="false" afterPath="$PROJECT_DIR$/userDataBase.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,18 +51,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/projects/Java/intellij/Airline_Ticket_Booking2",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/projects/Java/intellij/Airline_Ticket_Booking2&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Temp-user3\IdeaProjects\Airline_Ticket_Booking\src" />

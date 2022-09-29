@@ -55,7 +55,7 @@ public class UserInterface extends UserInputs {
                         if (password.equals(userDBOutput.get(i).getPassword())) {
                             updateUserDataBase(true,i);
                             userDataBase();
-                            optionsToTheUsersAfterLogin(i);
+                            isUserLoggedIn();
                         } else if(password.isEmpty())
                             System.out.println(TEXT_RED + "Password cannot be empty."+ TEXT_RESET);
                         else {
@@ -94,7 +94,7 @@ public class UserInterface extends UserInputs {
     }
     void optionsToTheUsersBeforeLogin() throws IOException, ParseException {
         clearScreen();
-        System.out.println("Welcome to C1ph3R Airlines:\n1 >>>>> Already an user, please Login.\n2 >>>>> New user, please register to continue.\n3 >>>>> to quit.\nSelect one of the option above:");
+        System.out.println(TEXT_PURPLE + "Welcome to C1ph3R Airlines:"+TEXT_RESET+"\n1 >>>>> Already an user, please Login.\n2 >>>>> New user, please register to continue."+TEXT_RED+"\n3 >>>>> to quit."+TEXT_RESET+"\nSelect one of the option above:");
         do{
             response = scanner.next();
             if(response.equals("1")){
