@@ -1,6 +1,6 @@
 [
   {
-    "isLogin": false,
+    "isLogin": true,
     "password": "Qwerty",
     "gender": "Male",
     "emailId": "jeevarag1016@gmail.com",
@@ -34,6 +34,70 @@
         "Date": "Departure Date: 30-09-2022",
         "detailsOfFlightClass": {
           "price": 12000,
+          "checkInExtra": 30,
+          "noOfSeatsAvailableInBusinessClass": 10,
+          "meals": "Cold Drinks\/Hot Drinks and Veg\/Non-Veg Sandwich"
+        }
+      },
+      {
+        "returnTimeIfAvailable": "",
+        "tripType": "OneWay",
+        "PNRNumber": 6516929791806127131,
+        "from": "Mumbai",
+        "flightClass": "Business",
+        "to": "Chennai",
+        "time": "Date: 20-10-2022, Departure time at your location: 10 AM,Arrival time to your destination: 12 PM",
+        "Date": "Departure Date: 20-10-2022",
+        "detailsOfFlightClass": {
+          "price": 12000,
+          "checkInExtra": 30,
+          "noOfSeatsAvailableInBusinessClass": 10,
+          "meals": "Cold Drinks\/Hot Drinks and Veg\/Non-Veg Sandwich"
+        }
+      },
+      {
+        "returnTimeIfAvailable": "",
+        "tripType": "OneWay",
+        "PNRNumber": 1422145108689157594,
+        "from": "Mumbai",
+        "flightClass": "Business",
+        "to": "Chennai",
+        "time": "Date: 20-10-2022, Departure time at your location: 10 AM,Arrival time to your destination: 12 PM",
+        "Date": "Departure Date: 20-10-2022",
+        "detailsOfFlightClass": {
+          "price": 12000,
+          "checkInExtra": 30,
+          "noOfSeatsAvailableInBusinessClass": 10,
+          "meals": "Cold Drinks\/Hot Drinks and Veg\/Non-Veg Sandwich"
+        }
+      },
+      {
+        "returnTimeIfAvailable": "",
+        "tripType": "OneWay",
+        "PNRNumber": 2130274025388110161,
+        "from": "Bengaluru",
+        "flightClass": "Business",
+        "to": "goa",
+        "time": "Date: 20-10-2022, Departure time at your location: 11 AM,Arrival time to your destination: 1 PM",
+        "Date": "Departure Date: 20-10-2022",
+        "detailsOfFlightClass": {
+          "price": 11000,
+          "checkInExtra": 30,
+          "noOfSeatsAvailableInBusinessClass": 10,
+          "meals": "Cold Drinks\/Hot Drinks and Veg\/Non-Veg Sandwich"
+        }
+      },
+      {
+        "returnTimeIfAvailable": "",
+        "tripType": "OneWay",
+        "PNRNumber": 8777203672714461129,
+        "from": "Bengaluru",
+        "flightClass": "Business",
+        "to": "Mumbai",
+        "time": "Date: 10-10-2022, Departure time at your location: 11 AM,Arrival time to your destination: 1 PM",
+        "Date": "Departure Date: 10-10-2022",
+        "detailsOfFlightClass": {
+          "price": 11000,
           "checkInExtra": 30,
           "noOfSeatsAvailableInBusinessClass": 10,
           "meals": "Cold Drinks\/Hot Drinks and Veg\/Non-Veg Sandwich"

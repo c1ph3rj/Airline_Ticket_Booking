@@ -35,12 +35,12 @@ public class UserInputs extends DataBaseOperations {
     private Long pNRNumber;
     private String userName = "", mailId, mobileNumber, gender, password = "";
     private int age;
-    private boolean isLoggedIn = false, newAccount;
+    private boolean isLoggedIn = false;
     private String returnTime = "", time, flight, flightClass, departureDate, returnDate, response, arrival, departure, tripType, dateForFlight;
     private int flightNo;
 
     //Constructor to get the userDatabase and flightDatabase.
-    public UserInputs(String userName,String password, String mailId, String mobileNumber, int age, String gender, boolean isLoggedIn) throws IOException {
+    public UserInputs(String userName, String password, String mailId, String mobileNumber, int age, String gender, boolean isLoggedIn) {
         super();
         this.isLoggedIn = isLoggedIn;
         this.userName = userName;
@@ -51,7 +51,7 @@ public class UserInputs extends DataBaseOperations {
         this.mailId = mailId;
     }
 
-    public UserInputs() throws IOException {
+    public UserInputs() {
         super();
 
     }
@@ -88,50 +88,52 @@ public class UserInputs extends DataBaseOperations {
         System.out.println(TEXT_YELLOW + "Press >> 3 to Re enter data. " + TEXT_RESET  );
         do {
             String input = scanner.next();
-            if (input.equals("1")) {
-                clearScreen();
-                flightDataToTheDB();
-                updateUserDataBase(userNo,flightObj);
-                System.out.println("ThankYou For Booking in C1ph3R Airlines.\nPNR NUMBER:" + pNRNumber + "\nBooked At:" + today + "\n\n");
-                response = "";
-                break;
-            } else if (input.equals("2")) {
-                System.out.println("Your Booking Process has been canceled");
-                response = "done";
-                break;
-            } else if (input.equals("3"))
-                userDetailsAsInput();
-            else
-                response = "Invalid";
-            System.out.println(response);
+            switch (input) {
+                case "1" -> {
+                    clearScreen();
+                    flightDataToTheDB();
+                    updateUserDataBase(userNo, flightObj);
+                    System.out.println("ThankYou For Booking in C1ph3R Airlines.\nPNR NUMBER:" + pNRNumber + "\nBooked At:" + today + "\n\n");
+                    response = "Done";
+                }
+                case "2" -> {
+                    System.out.println("Your Booking Process has been canceled");
+                    response = "done";
+                }
+                case "3" -> userDetailsAsInput();
+                default -> {
+                    response = "Invalid";
+                    System.out.println(response);
+                }
+            }
         } while (response.equals("Invalid"));
     }
 
     //Method to print the details of the user What we get.
-    void printUserInputs() throws IOException {
+    public void printUserInputs() throws IOException {
         clearScreen();
         pNRNumber = new Random().nextLong();
         pNRNumber = (pNRNumber < 0) ? (pNRNumber * -1) : pNRNumber;
-        System.out.println(TEXT_PURPLE + "____________ Confrim Booking ____________");
-        System.out.println( TEXT_BLUE +"PNR Number : " + pNRNumber + "\nUserName   : " + userName + "\nE-Mail Id  : " + mailId + "\nMobile no  : " + mobileNumber + "\nAge        : " + age + "\nGender     : " + gender + "\n_________ details of the Flight _________" + "\nFlight Name: " + flightDB.get(flightNo).flightName + "\nFlight No  : " + (flightNo + 1) + "\nTrip Type  : " + tripType + "\nDeparture  : " + departure + "\nArrival    : " + arrival + "\n" + time + "\nClass      : " + flightClass + "\nIn " + flightClass + " Class:-");
+        System.out.println(TEXT_PURPLE + "____________ Confirm Booking ____________");
+        System.out.println(TEXT_GREEN + "PNR Number : " + TEXT_BLUE + pNRNumber + TEXT_GREEN + "\nUserName   : " + TEXT_BLUE + userName + TEXT_GREEN + "\nE-Mail Id  : " + TEXT_BLUE + mailId + TEXT_GREEN + "\nMobile no  : " + TEXT_BLUE + mobileNumber + TEXT_GREEN + "\nAge        : " + TEXT_BLUE + age + TEXT_GREEN + "\nGender     : " + TEXT_BLUE + gender + TEXT_PURPLE + "\n_________ details of the Flight _________" + TEXT_GREEN + "\nFlight Name: " + TEXT_BLUE + flightDB.get(flightNo).flightName + TEXT_GREEN + "\nFlight No  : " + TEXT_BLUE + (flightNo + 1) + TEXT_GREEN + "\nTrip Type  : " + TEXT_BLUE + tripType + TEXT_GREEN + "\nDeparture  : " + TEXT_BLUE + departure + TEXT_GREEN + "\nArrival    : " + TEXT_BLUE + arrival + "\n" + time + TEXT_GREEN + "\nClass      : " + TEXT_BLUE + flightClass + TEXT_GREEN + "\nIn " + flightClass + " Class:-");
         if ((flightClass.equals("Business"))) {
-            System.out.println("Meals      : " + flightDB.get(flightNo).inBusinessClass.get("meals"));
-            System.out.println("CheckIn(Extra) : " + flightDB.get(flightNo).inBusinessClass.get("checkInExtra") + "Kg");
-            System.out.println("_________________ total ________________");
-            System.out.println("Price for the flight: " + flightDB.get(flightNo).inBusinessClass.get("price"));
-            System.out.println("________________________________________");
+            System.out.println(TEXT_GREEN + "Meals      : " + TEXT_BLUE + flightDB.get(flightNo).inBusinessClass.get("meals"));
+            System.out.println(TEXT_GREEN + "CheckIn(Extra) : " + TEXT_BLUE + flightDB.get(flightNo).inBusinessClass.get("checkInExtra") + "Kg");
+            System.out.println(TEXT_PURPLE + "_________________ total ________________");
+            System.out.println(TEXT_GREEN + "Price for the flight:  RS." + TEXT_BLUE + flightDB.get(flightNo).inBusinessClass.get("price"));
+            System.out.println(TEXT_PURPLE + "________________________________________");
         } else if ((flightClass.equals("First"))) {
-            System.out.println("Meals      : " + flightDB.get(flightNo).inFirstClass.get("meals"));
-            System.out.println("CheckIn(Extra) : " + flightDB.get(flightNo).inFirstClass.get("checkInExtra"));
-            System.out.println("________________ total _________________");
-            System.out.println("Price for the flight: " + flightDB.get(flightNo).inFirstClass.get("price"));
-            System.out.println("________________________________________");
+            System.out.println(TEXT_GREEN + "Meals      : " + TEXT_BLUE + flightDB.get(flightNo).inFirstClass.get("meals"));
+            System.out.println(TEXT_GREEN + "CheckIn(Extra) : " + TEXT_BLUE + flightDB.get(flightNo).inFirstClass.get("checkInExtra"));
+            System.out.println(TEXT_PURPLE + "________________ total _________________");
+            System.out.println(TEXT_GREEN + "Price for the flight:  RS." + TEXT_BLUE + flightDB.get(flightNo).inFirstClass.get("price"));
+            System.out.println(TEXT_PURPLE + "________________________________________");
         } else {
-            System.out.println("Meals      : " + flightDB.get(flightNo).inSecondClass.get("meals"));
-            System.out.println("CheckIn(Extra) : " + flightDB.get(flightNo).inSecondClass.get("checkInExtra"));
-            System.out.println("_________________ total ________________");
-            System.out.println("Price for the flight: RS." + flightDB.get(flightNo).inSecondClass.get("price") + "\n");
-            System.out.println("________________________________________");
+            System.out.println(TEXT_GREEN + "Meals      : " + TEXT_BLUE + flightDB.get(flightNo).inSecondClass.get("meals"));
+            System.out.println(TEXT_GREEN + "CheckIn(Extra) : " + TEXT_BLUE + flightDB.get(flightNo).inSecondClass.get("checkInExtra"));
+            System.out.println(TEXT_PURPLE + "_________________ total ________________");
+            System.out.println(TEXT_GREEN + "Price for the flight: RS." + TEXT_BLUE + flightDB.get(flightNo).inSecondClass.get("price") + "\n");
+            System.out.println(TEXT_PURPLE + "________________________________________" + TEXT_RESET);
         }
         confirmBooking();
     }
@@ -139,10 +141,9 @@ public class UserInputs extends DataBaseOperations {
     //Method to get UserDetails and Store in a DB.
     protected void registerNewAccount() throws IOException {
         Pattern userNamePattern = Pattern.compile("^[A-Za-z][A-Za-z0-9_]{7,29}$");
-        Matcher matches = userNamePattern.matcher(userName);
         System.out.println("__________ Enter the below details to book the flight __________");
         //For UserName.
-        System.out.println("Enter your UserName:");
+        System.out.println("Enter your UserName:\n(Note: must contain least 8 letters.)");
         do {
             userName = scanner.next();
             Matcher matcher = userNamePattern.matcher(userName);
@@ -150,8 +151,8 @@ public class UserInputs extends DataBaseOperations {
             if (response.contains("invalid"))
                 System.out.println(response);
             else {
-                for (int i = 0; i < userDBOutput.size(); i++) {
-                    if (userName.equals(userDBOutput.get(i).getUserName())) {
+                for (Database.userDataBase userDataBase : userDBOutput) {
+                    if (userName.equals(userDataBase.getUserName())) {
                         response = "UserName Already exist";
                         System.out.println(response);
                     }
@@ -240,7 +241,6 @@ public class UserInputs extends DataBaseOperations {
                 try {
                     if (userSelection.equals("1")) {
                         response = "continue";
-                        newAccount = false;
                         printUserInputs();
                     } else if (userSelection.equals("2")) {
                         response = "continue";
@@ -317,7 +317,10 @@ public class UserInputs extends DataBaseOperations {
                     response = "Time Occurred";
                     if (tripType.equals("RoundTrip"))
                         setReturnTime();
-                    else userDetailsAsInput();
+                    else {
+                        userDetailsAsInput();
+                        break;
+                    }
                 } else response = "invalid Input! try again.";
             } catch (Exception e) {
                 response = "invalid Input! try again.";
@@ -422,12 +425,12 @@ public class UserInputs extends DataBaseOperations {
     }
 
     //Method to set the data for the flight.
-    void setDate() throws java.text.ParseException {
+    void setDate() {
         clearScreen();
         System.out.println(TEXT_BLUE + "Departure From : " + departure + "\t\tArrival to :" + arrival + TEXT_RESET);
         System.out.println(TEXT_YELLOW + "\nEnter Departure Date :" + TEXT_RESET + "\n(dd-mm-yyyy)\nExample: 10-03-2022");
         do {
-            try{
+            try {
                 departureDate = scanner.next();
                 Matcher dateMatch = datePattern.matcher(departureDate);
                 if (dateMatch.matches()) {
@@ -472,9 +475,9 @@ public class UserInputs extends DataBaseOperations {
         clearScreen();
         ArrayList<String> listOfCities = new ArrayList<>();
         System.out.println(TEXT_YELLOW + "Select Destination Location \nTo:" + TEXT_RESET);
-        for (int i = 0; i < flightDB.size(); i++) {
-            if (!(listOfCities.contains((flightDB.get(i).arrivalLocation))) && !departure.equals((flightDB.get(i).arrivalLocation)))
-                listOfCities.add((flightDB.get(i).arrivalLocation));
+        for (FlightDataBase flightDataBase : flightDB) {
+            if (!(listOfCities.contains((flightDataBase.arrivalLocation))) && !departure.equals((flightDataBase.arrivalLocation)))
+                listOfCities.add((flightDataBase.arrivalLocation));
         }
         for (int i = 0; i < listOfCities.size(); i++)
             System.out.println((i + 1) + " >>>>> " + listOfCities.get(i));
@@ -500,9 +503,9 @@ public class UserInputs extends DataBaseOperations {
         clearScreen();
         ArrayList<String> listOfCities = new ArrayList<>();
         System.out.println(TEXT_YELLOW + "Select Your Location\nFrom:" + TEXT_RESET);
-        for (int i = 0; i < flightDB.size(); i++) {
-            if (!(listOfCities.contains((flightDB.get(i).departureLocation))))
-                listOfCities.add((flightDB.get(i).departureLocation));
+        for (FlightDataBase flightDataBase : flightDB) {
+            if (!(listOfCities.contains((flightDataBase.departureLocation))))
+                listOfCities.add((flightDataBase.departureLocation));
         }
         for (int i = 0; i < listOfCities.size(); i++)
             System.out.println((i + 1) + " >>>>> " + listOfCities.get(i));
@@ -548,7 +551,6 @@ public class UserInputs extends DataBaseOperations {
         this.mobileNumber = userDBOutput.get(i).getMobileNumber();
         this.mailId = userDBOutput.get(i).getEMail();
         userNo = i;
-        newAccount = false;
         setSelectTripType();
     }
 
