@@ -1,5 +1,6 @@
 package Database;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class userDataBase {
@@ -23,7 +24,7 @@ public class userDataBase {
         return gender;
     }
 
-    public JSONObject getDetailsOfTheFLight() {
+    public JSONArray getDetailsOfTheFLight() {
         return detailsOfTheFLight;
     }
 
@@ -32,15 +33,16 @@ public class userDataBase {
     }
 
 
-    private boolean isLoggedIn;
-    private String userName;
-    private String eMail;
-    private String mobileNumber;
-    private int age;
-    private String gender;
-    private String password;
-    private JSONObject detailsOfTheFLight;
-    public userDataBase(boolean isLoggedIn, String userName,String password, String eMail, String mobileNumber, int age, String gender, JSONObject detailsOfTheFLight) {
+    private final boolean isLoggedIn;
+    private final String userName;
+    private final String eMail;
+    private final String mobileNumber;
+    private final int age;
+    private final String gender;
+    private final String password;
+    private final JSONArray detailsOfTheFLight;
+
+    public userDataBase(boolean isLoggedIn, String userName, String password, String eMail, String mobileNumber, int age, String gender, JSONArray detailsOfTheFLight) {
         this.isLoggedIn = isLoggedIn;
         this.userName = userName;
         this.password = password;
